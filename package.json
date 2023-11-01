@@ -8,6 +8,9 @@
     },
     "author": "",
     "license": "ISC",
+    "publishConfig": {
+        "access": "public"
+    },
     "devDependencies": {
         "typescript": "^5.2.2"
     }
