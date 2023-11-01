@@ -9,8 +9,16 @@ Definitions of engine and editor within Creator
 
 ## Install
 
+To install the latest version of the definitions:
+
 ```bash
 npm install @cocos/creator-types
+```
+
+In typical scenarios, we need to install definitions for a specific version, for example, when we are using Creator 3.8.0, you can install the definition files as follows:
+
+```bash
+npm install @cocos/creator-types@3.8.0
 ```
 
 ## Usage
@@ -39,3 +47,9 @@ After declaring `@cocos/creator-types/editor`, the `Editor` object can be recogn
 ```ts
 Editor.Dialog;
 ```
+
+For more detailed information, please refer to:
+
+[Engine API](https://docs.cocos.com/creator/api/en/)
+
+[Extension Doc](https://docs.cocos.com/creator/manual/en/editor/extension/readme.html)
