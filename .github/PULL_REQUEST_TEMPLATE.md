@@ -1,14 +1,14 @@
-<!-- 请勿删除注释，需要使用时请复制一遍 -->
-## PR 类型
+<!-- Please do not remove the comments; make a copy when needed -->
+## PR Type
 
-- [ ] 问题修复
-- [ ] 优化
-- [ ] 新功能
-- [ ] 测试用例
+- [ ] Bug fix
+- [ ] Optimization
+- [ ] New feature
+- [ ] Test case
 
-<!-- 详细的描述这个修改的背景和原因 -->
-## PR 描述
+<!-- Provide a detailed description of the background and reasons for this change -->
+## PR Description
 
-<!-- 请描述具体改动了哪些地方，为什么修改 -->
-### 修改说明
-1. 
+<!-- Please describe what specific changes have been made and why -->
+### Changes Made
+1.
