@@ -1,18 +1,13 @@
 import UndoManagerBase from './undo-manager-base';
 import SnapshotCommand from './snapshot-command';
 import { ICommand } from './icommand';
-interface SceneInfo {
-    uuid: string;
-    animationMode: boolean;
-}
 export declare class SceneUndoManager extends UndoManagerBase {
-    name: string;
     private _lightProbeEditMode;
     private _lightProbeUndoArray;
     set undoArray(value: ICommand[]);
     get undoArray(): ICommand[];
     cacheDump: any;
-    scene: SceneInfo;
+    scene: any;
     records: string[];
     constructor();
     getUndoData(uuids?: string[]): any;
@@ -43,7 +38,6 @@ export declare class SceneUndoManager extends UndoManagerBase {
 }
 declare const sceneUndoManager: SceneUndoManager;
 export declare class SceneUndoCommand extends SnapshotCommand {
-    manager: SceneUndoManager | null;
     excute(data: any): Promise<void>;
 }
 export default sceneUndoManager;

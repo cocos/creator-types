@@ -1,6 +1,6 @@
 
-import * as AssetDb from './packages/asset-db/@types/protected/message';
-import * as Builder from './packages/builder/@types/protected/message';
+import * as AssetDb from './packages/asset-db/@types/message';
+import * as Builder from './packages/builder/@types/message';
 import * as Engine from './packages/engine/@types/message';
 import * as Information from './packages/information/@types/message';
 import * as Preferences from './packages/preferences/@types/message';
