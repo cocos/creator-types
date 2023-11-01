@@ -1,0 +1,8 @@
+{
+    "name": "@editor/library-type",
+    "version": "3.8.1-083111",
+    "description": "CocosCreator 编辑器接口的定义文件",
+    "author": "CocosCreator",
+    "license": "ISC",
+    "dependencies": {}
+}

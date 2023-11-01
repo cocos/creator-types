@@ -1,0 +1,14 @@
+{
+    "name": "@cocos/creator-types",
+    "version": "3.8.1",
+    "description": "",
+    "scripts": {
+        "test": "cd test && npx tsc",
+        "ci": "npm install && npm run test"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "typescript": "^5.2.2"
+    }
+}
