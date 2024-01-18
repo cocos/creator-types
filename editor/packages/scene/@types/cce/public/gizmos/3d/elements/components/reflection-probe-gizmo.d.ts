@@ -12,15 +12,16 @@ declare class ReflectionProbeGizmo extends GizmoBase {
     private _planeMeshRenderer;
     private _sphere;
     private _plane;
+    protected _loadModelState: 'loading' | 'completed' | 'idle';
     onBBControllerMouseDown(event: IControlMouseEvent): void;
     onBBControllerMouseMove(event: IControlMouseEvent): void;
     onBBControllerMouseUp(event: IControlMouseEvent): void;
     init(): void;
-    needShowWithInit: boolean;
     onShow(): void;
     generateMaterial(options?: IMaterialInfo): Material;
     onHide(): void;
     createController(): void;
+    loadModel(): void;
     private loadSphere;
     private loadPlane;
     updateControllerTransform(): void;

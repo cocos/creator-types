@@ -1,4 +1,5 @@
 import Gizmo from '../../gizmo-base';
+import { TerrainEditor } from './terrain-editor';
 import { eTerrainEditorMode } from './terrain-editor-mode';
 import { ISceneKeyboardEvent } from '../../../../../../../../@types/private';
 import { IControlMouseEvent } from '../../../../defines';
@@ -22,6 +23,7 @@ declare class TerrainGizmo extends Gizmo {
     private _isSmooth;
     private _isFlatten;
     private _isSetHeight;
+    get editor(): TerrainEditor | null;
     init(): void;
     get isConcave(): boolean;
     get isSmooth(): boolean;

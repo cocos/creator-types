@@ -1,4 +1,3 @@
-/// <reference types="../../../../node_modules/cc/cc" />
 import type { ValueType } from 'cc';
 import { BufferBuilder, CCON } from 'cc/editor/serialization';
 import { IArrayOptions, IClassOptions, ICustomClassOptions, IObjParsingInfo, PropertyOptions } from './parser';

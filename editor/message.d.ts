@@ -1,6 +1,6 @@
 
-import * as AssetDb from './packages/asset-db/@types/message';
-import * as Builder from './packages/builder/@types/message';
+import * as AssetDb from './packages/asset-db/@types/protected/message';
+import * as Builder from './packages/builder/@types/protected/message';
 import * as Engine from './packages/engine/@types/message';
 import * as Information from './packages/information/@types/message';
 import * as Preferences from './packages/preferences/@types/message';
@@ -10,6 +10,7 @@ import * as Project from './packages/project/@types/message';
 import * as Scene from './packages/scene/@types/message';
 import * as Server from './packages/server/@types/message';
 import * as Device from './packages/device/@types/message';
+import * as Extension from './packages/extension/@types/message';
 
 declare global {
     interface EditorMessageContent {
@@ -34,6 +35,7 @@ declare global {
         'scene': Scene.message;
         'server': Server.message;
         'device': Device.message;
+        'extension': Extension.message;
 
     }
 }

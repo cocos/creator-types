@@ -1,5 +1,5 @@
 import type { WebviewTag } from 'electron';
-import ISceneFacade from './scene-facade-interface';
+import type ISceneFacade from './scene-facade-interface';
 /**
  * 这个是 engine-view 标签的接口
  */

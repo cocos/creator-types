@@ -1,6 +1,6 @@
 import { ISceneMouseEvent, ISceneKeyboardEvent } from '../../../../../../../@types/private';
 import { IOperationMode } from '../../operation-mode-interface';
-import { CameraController3D } from '../camera-controller-3d';
+import type { CameraController3D } from '../camera-controller-3d';
 import { Quat, Vec3 } from 'cc';
 import { CameraMoveMode } from '../../utils';
 declare class ModeBase implements IOperationMode {

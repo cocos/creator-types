@@ -18,8 +18,11 @@ export default class EditorCameraComponent extends Camera {
     set clearStencil(val: number);
     get clearStencil(): number;
     set clearFlags(val: gfx.ClearFlags);
+    get clearFlags(): gfx.ClearFlags;
     set rect(val: Rect);
+    get rect(): Rect;
     set screenScale(val: number);
+    get screenScale(): number;
     onLoad(): void;
     onEnable(): void;
     onDisable(): void;

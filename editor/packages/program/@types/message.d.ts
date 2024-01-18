@@ -7,10 +7,6 @@ export interface message extends EditorMessageMap {
         ],
         result: IProgramInfo | null,
     },
-    "query-programs": {
-        params: [],
-        result: Record<string, Record<string, IProgramInfo>>
-    }
     "open-program": {
         params: [
             string,

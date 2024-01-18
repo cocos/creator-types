@@ -1,12 +1,11 @@
-/// <reference types="../../../../node_modules/cc/cc" />
 import { ValueType, deserialize } from 'cc';
 import { Node, IRefsBuilder, TraceableDict } from './types';
 import { PropertyOptions, IArrayOptions, IClassOptions, ICustomClassOptions, IObjParsingInfo } from '../parser';
 import D = deserialize.Internal;
-declare type Empty = D.Empty_;
+type Empty = D.Empty_;
 import File = D.File_;
-declare type IFileData = D.IFileData_;
-declare type IRefs = D.IRefs_;
+type IFileData = D.IFileData_;
+type IRefs = D.IRefs_;
 import { Builder, IBuilderOptions } from '../base-builder';
 export declare const FORMAT_VERSION = 1;
 declare namespace RefsBuilder {

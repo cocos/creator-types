@@ -1,11 +1,11 @@
 import { Component, Node, Prefab, Scene } from 'cc';
-declare type PrefabInfo = Prefab._utils.PrefabInfo;
+type PrefabInfo = Prefab._utils.PrefabInfo;
 declare const PrefabInfo: typeof Prefab._utils.PrefabInfo;
-declare type PrefabInstance = Prefab._utils.PrefabInstance;
+type PrefabInstance = Prefab._utils.PrefabInstance;
 declare const PrefabInstance: typeof Prefab._utils.PrefabInstance;
-declare type PropertyOverrideInfo = Prefab._utils.PropertyOverrideInfo;
+type PropertyOverrideInfo = Prefab._utils.PropertyOverrideInfo;
 declare const PropertyOverrideInfo: typeof Prefab._utils.PropertyOverrideInfo;
-declare type TargetOverrideInfo = Prefab._utils.TargetOverrideInfo;
+type TargetOverrideInfo = Prefab._utils.TargetOverrideInfo;
 declare const TargetOverrideInfo: typeof Prefab._utils.TargetOverrideInfo;
 declare enum PrefabState {
     NotAPrefab = 0,
@@ -61,7 +61,7 @@ declare class PrefabUtil {
     getPrefabInstanceRoot(node: Node): Node | null;
     isSameSourceTargetOverride(targetOverride: TargetOverrideInfo, source: Component | Node, sourceLocalID: string[] | undefined, propPath: string[]): boolean;
     getSourceData(source: Component): {
-        sourceTarget: Node | Component;
+        sourceTarget: Component | Node;
         sourceLocalID: string[] | undefined;
     } | null;
     removeTargetOverrideBySource(prefabInfo: PrefabInfo | undefined, source: Node | Component): boolean;

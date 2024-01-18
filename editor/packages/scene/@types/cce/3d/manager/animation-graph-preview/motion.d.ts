@@ -1,7 +1,7 @@
 import * as animationApi from 'cc/editor/new-gen-anim';
 import { Node } from 'cc';
 import { AnimationGraphPreviewBase, PreviewState } from './base';
-declare type Motion = NonNullable<animationApi.MotionState['motion']>;
+type Motion = NonNullable<animationApi.MotionState['motion']>;
 declare class MotionPreview extends AnimationGraphPreviewBase<animationApi.MotionPreviewer> {
     motion: Motion | null;
     hide(): void;

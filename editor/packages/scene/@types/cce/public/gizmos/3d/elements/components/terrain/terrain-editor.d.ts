@@ -4,9 +4,8 @@ import { TerrainEditorPaint } from './terrain-editor-paint';
 import { TerrainEditorSculpt } from './terrain-editor-sculpt';
 import { TerrainEditorSelect } from './terrain-editor-select';
 import { Terrain, Camera } from 'cc';
-import TerrainGizmo from './terrain-gizmo';
+import type TerrainGizmo from './terrain-gizmo';
 export declare class TerrainEditor {
-    static Instance: TerrainEditor;
     private _terrain;
     private _modes;
     private _currentMode;
@@ -23,7 +22,7 @@ export declare class TerrainEditor {
     getCurrentModeType(): eTerrainEditorMode;
     setCurrentLayer(id: number): void;
     getCurrentLayer(): number;
-    update(dtime: number, isShiftDown: boolean): void;
+    update(dTime: number, isShiftDown: boolean): void;
     onMouseDown(x: number, y: number): void;
     onMouseUp(x?: number, y?: number): void;
     onMouseMove(x: number, y: number): void;

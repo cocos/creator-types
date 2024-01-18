@@ -4,7 +4,7 @@ interface IPropertyOptions {
     defaultValue?: any;
     expectedType?: string;
 }
-export declare type PropertyOptions = IPropertyOptions | null;
+export type PropertyOptions = IPropertyOptions | null;
 export interface IArrayOptions extends IPropertyOptions {
     writeOnlyArray: any[];
 }

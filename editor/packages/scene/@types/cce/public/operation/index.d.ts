@@ -1,9 +1,9 @@
 import { ISizeLike } from 'cc';
 import { IDragEvent, ISceneKeyboardEvent, ISceneMouseEvent } from '../../../../@types/private';
-export declare type SceneMouseEvent = 'mousedown' | 'mousemove' | 'mouseup' | 'mousewheel';
-export declare type SceneKeyboardEvent = 'keydown' | 'keyup';
-export declare type SceneDragEvent = 'onDragOver' | 'onDrop';
-export declare type OperationEvent = SceneDragEvent | SceneKeyboardEvent | SceneMouseEvent | 'resize';
+export type SceneMouseEvent = 'mousedown' | 'mousemove' | 'mouseup' | 'mousewheel';
+export type SceneKeyboardEvent = 'keydown' | 'keyup';
+export type SceneDragEvent = 'onDragOver' | 'onDrop';
+export type OperationEvent = SceneDragEvent | SceneKeyboardEvent | SceneMouseEvent | 'resize';
 /**
  * 所有场景的操作管理
  */

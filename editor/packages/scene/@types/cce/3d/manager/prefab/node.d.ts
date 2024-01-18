@@ -1,12 +1,12 @@
 import { Component, Node, Prefab, Scene } from 'cc';
 import { IComponentPrefabData } from './component';
 import { IChangeNodeOptions, IOptionBase } from '../../../../../@types/private';
-declare type PrefabInfo = Prefab._utils.PrefabInfo;
+type PrefabInfo = Prefab._utils.PrefabInfo;
 declare const PrefabInfo: typeof Prefab._utils.PrefabInfo;
-declare type PropertyOverrideInfo = Prefab._utils.PropertyOverrideInfo;
+type PropertyOverrideInfo = Prefab._utils.PropertyOverrideInfo;
 declare const PropertyOverrideInfo: typeof Prefab._utils.PropertyOverrideInfo;
-declare type PrefabInstance = Prefab._utils.PrefabInstance;
-declare type TargetInfo = Prefab._utils.TargetInfo;
+type PrefabInstance = Prefab._utils.PrefabInstance;
+type TargetInfo = Prefab._utils.TargetInfo;
 declare const TargetInfo: typeof Prefab._utils.TargetInfo;
 interface IDiffPropertyInfo {
     pathKeys: string[];

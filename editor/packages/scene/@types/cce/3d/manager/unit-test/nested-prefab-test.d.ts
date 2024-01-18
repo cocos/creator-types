@@ -1,4 +1,4 @@
-import { SceneFacadeManager } from '../../facade/scene-facade-manager';
+import type { SceneFacadeManager } from '../../facade/scene-facade-manager';
 import { IUnitTest } from './unit-test-interface';
 declare class NestedPrefabTest implements IUnitTest {
     test(sceneFacadeMgr: SceneFacadeManager): Promise<boolean>;

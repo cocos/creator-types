@@ -26,7 +26,6 @@ export default class LightProbeGizmo extends GizmoBase implements TargetDelegate
     protected onShow(): void;
     protected onHide(): void;
     onNodeChanged(event: IChangeNodeOptions): void;
-    private checkIconGizmoStats;
     static debounceUpdateController: NodeJS.Timeout | null;
     static debounceUpdateLines: NodeJS.Timeout | null;
     private afterPositionGizmoSetPositions;

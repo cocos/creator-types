@@ -1,7 +1,7 @@
 /// <reference path='../../../@types/index'/>
-export * from '@editor/library-type/packages/builder/@types/protected';
+export * from '@cocos/creator-types/editor/packages/builder/@types/protected';
 
-import { appTemplateData, IInternalBuildOptions, IPolyFills, InternalBuildResult, IBuildPaths } from '@editor/library-type/packages/builder/@types/protected';
+import { appTemplateData, IInternalBuildOptions, IPolyFills, InternalBuildResult, IBuildPaths } from '@cocos/creator-types/editor/packages/builder/@types/protected';
 
 export interface IOptions {
     useWebGPU: boolean;

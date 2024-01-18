@@ -1,5 +1,6 @@
 import IconGizmoBase from './icon-gizmo-base';
 declare class SpotLightIconGizmo extends IconGizmoBase {
+    disableOnSelected: boolean;
     createController(): void;
     updateController(): void;
 }

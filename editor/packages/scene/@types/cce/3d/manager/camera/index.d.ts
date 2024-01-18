@@ -90,6 +90,7 @@ export declare class Camera extends EventEmitter implements ISceneEvents {
     arrayToColor(colorArray: number[]): any;
     getCameraProperty(): any;
     setCameraProperty(options: any): void;
+    resetCameraProperty(): void;
     /**
      * 焦点转向某个节点
      * 如果传入 nodes，责转向这些节点

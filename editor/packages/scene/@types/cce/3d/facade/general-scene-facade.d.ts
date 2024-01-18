@@ -2,6 +2,7 @@
 /// <reference path="../../public/gizmos/utils/engine/3d.d.ts" />
 /// <reference path="../../public/gizmos/3d/gizmo-manager.d.ts" />
 /// <reference path="../manager/asset/asset-watcher.d.ts" />
+/// <reference types="@cocos/creator-types/engine/cc" />
 import { CreateComponentOptions, CreateNodeOptions, CutNodeOptions, ExecuteComponentMethodOptions, ExecuteSceneScriptMethodOptions, IAnimOperation, MoveArrayOptions, PasteNodeOptions, QueryClassesOptions, RemoveArrayOptions, RemoveComponentOptions, RemoveNodeOptions, SetPropertyOptions, EditorCameraInfo } from '../../../../@types/public';
 import { IAniResultBase, IAssetMeta, IChangeNodeOptions, IOptionBase, ISceneUndoOptions } from '../../../../@types/private';
 import { ISceneFacadeState, SceneModeType } from './scene-facade-state-interface';
@@ -196,6 +197,7 @@ export declare class GeneralSceneFacade implements ISceneFacadeState, LightProbe
     setGridLineColor(color: number[]): void;
     getCameraProperty(): any;
     setCameraProperty(opts: any): void;
+    resetCameraProperty(): void;
     getCameraWheelSpeed(): number;
     setCameraWheelSpeed(speed: number): void;
     getCameraWanderSpeed(): number;

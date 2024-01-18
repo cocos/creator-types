@@ -1,4 +1,3 @@
-/// <reference types="../../../../node_modules/cc/cc" />
 import { Component, Node, Prefab } from 'cc';
 interface IAddPrefabInfoOption {
     nodeFileIdGenerator?: (node: Node) => string;

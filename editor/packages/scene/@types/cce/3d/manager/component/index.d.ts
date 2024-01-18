@@ -48,7 +48,7 @@ export declare class CompManager extends EventEmitter {
      * @param {*} uuid
      * @returns {cc.Component}
      */
-    queryRecycle(uuid: string): Component | null;
+    queryRecycle(uuid: string): any;
     /**
      * 在编辑器中删除一个component
      * @param {*} component 组件

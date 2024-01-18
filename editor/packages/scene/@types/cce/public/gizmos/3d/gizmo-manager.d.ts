@@ -1,7 +1,7 @@
 /// <reference types="node" />
 import { IChangeNodeOptions } from '../../../../../@types/private';
 import { EventEmitter } from 'events';
-import { Component, Node, Scene, Canvas } from 'cc';
+import { Camera, Component, Node, Scene, Canvas } from 'cc';
 import { TransformToolData, SnapConfigs, TransformToolDataToolNameType, TransformToolDataCoordinateType, TransformToolDataPivotType } from '../utils/transform-tool-data';
 import GizmoBase from './elements/gizmo-base';
 import { ISceneEvents } from '../../../3d/manager/scene-events-interface';
@@ -31,8 +31,8 @@ export declare class GizmoManager extends EventEmitter implements ISceneEvents, 
     private rootCanvasNode?;
     private _isIconGizmoVisible;
     private _worldAxisController;
-    private _sceneGizmoCamera;
-    private gizmoRootNode;
+    sceneGizmoCamera: Camera;
+    gizmoRootNode: Node;
     private _gizmoToolMap;
     private _selection;
     private _gizmosPool;
@@ -135,6 +135,7 @@ export declare class GizmoManager extends EventEmitter implements ISceneEvents, 
     onMouseLeave(): void;
     callAllGizmoFuncOfNode<T extends keyof GizmoBase>(node: Node, funcName: keyof GizmoBase, ...params: Parameters<GizmoBase[T]>): boolean;
     notifyNodeChanged(node: Node, recursive: boolean): void;
+    onNodeSelectionChanged(node: Node, selected: boolean): void;
     onNodeChanged(node: Node, opts: IChangeNodeOptions): void;
     onNodeAdded(node: Node): void;
     onNodeRemoved(node: Node): void;
@@ -165,7 +166,6 @@ export declare class GizmoManager extends EventEmitter implements ISceneEvents, 
     updateLightProbeInnerTetrahedron(): void;
     /**
      * 引擎更新了光照探针的数据，需要通知到LightProbeGizmo
-     * @param mode
      */
     lightProbeInfoChanged(): void;
     /**

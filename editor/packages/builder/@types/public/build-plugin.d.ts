@@ -3,8 +3,9 @@ import { IBuildTaskOption, IConsoleType } from './options';
 import { IBuildResult } from './build-result';
 
 export interface IBuildPluginConfig {
-    doc?: string; // 文档地址，支持 HTTP 地址，支持相对于编辑器官方 URL 的地址
+    doc?: string; // document address
     hooks?: string; // relate url about IHook
+    panel?: string; // relate url about custom panel
     options?: IDisplayOptions; // config of options
     verifyRuleMap?: IVerificationRuleMap;
 }
@@ -110,4 +111,26 @@ export namespace AssetHandlers {
     export type compressTextures = (
         tasks: { src: string; dest: string; quality: number | IPVRQuality | IASTCQuality | IETCQuality; format: ITextureCompressType }[],
     ) => Promise<void>;
+}
+
+
+// ui-panel 注册数据
+export interface PanelInfo {
+    $?: { [name: string]: string | HTMLElement | null };
+    template?: string; // TODO 暂时设置为可选
+    style?: string;
+    methods?: { [name: string]: Function };
+    ready?: Function;
+    close?: Function;
+    update?: (options: IBuildTaskOption, path: string, value: any) => void | Promise<void>;
+}
+
+export interface IPanelThis {
+    $: Record<string, HTMLElement>;
+    dispatch: (name: string, ...args: any[]) => void;
+}
+
+export interface IPanelInfo extends PanelInfo {
+    component?: any; // 注入面板的 vue 组件，可与与 options 共存，options 会优先显示
+    customButton?: string; // 要注入的构建按钮 ui-panel 组件
 }

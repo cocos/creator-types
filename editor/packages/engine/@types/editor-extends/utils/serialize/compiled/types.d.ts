@@ -1,16 +1,17 @@
-/// <reference types="../../../../node_modules/cc/cc" />
+/// <reference path="../../../../../../../../resources/3d/engine/bin/.declarations/cc.d.ts" />
+/// <reference types="@cocos/creator-types/engine/cc" />
 import { deserialize } from 'cc';
 import D = deserialize.Internal;
-declare type OtherObjectData = D.OtherObjectData_;
-declare type AnyData = D.AnyData_;
+type OtherObjectData = D.OtherObjectData_;
+type AnyData = D.AnyData_;
 import DataTypeID = D.DataTypeID_;
-declare type DataTypes = D.DataTypes_;
-declare type IClassObjectData = D.IClassObjectData_;
-declare type ICustomObjectData = D.ICustomObjectData_;
-declare type ICustomObjectDataContent = D.ICustomObjectDataContent_;
-declare type IDictData = D.IDictData_;
-declare type IMask = D.IMask_;
-declare type IClass = D.IClass_;
+type DataTypes = D.DataTypes_;
+type IClassObjectData = D.IClassObjectData_;
+type ICustomObjectData = D.ICustomObjectData_;
+type ICustomObjectDataContent = D.ICustomObjectDataContent_;
+type IDictData = D.IDictData_;
+type IMask = D.IMask_;
+type IClass = D.IClass_;
 export declare class TraceableItem {
     result: any;
     private tracers;
@@ -33,11 +34,11 @@ export declare class TraceableDict<T> {
 export interface IRefsBuilder {
     addRef(owner: Node, key: string | number, target: Node): number;
 }
-declare type DynamicType = DataTypeID.Array | DataTypeID.Dict | DataTypeID.Class | DataTypeID.CustomizedClass;
-declare type DerivedType = DataTypeID.InstanceRef | // 被多个对象复用时
+type DynamicType = DataTypeID.Array | DataTypeID.Dict | DataTypeID.Class | DataTypeID.CustomizedClass;
+type DerivedType = DataTypeID.InstanceRef | // 被多个对象复用时
 DataTypeID.SimpleType | // 可以完美被 json 序列化时
 DataTypeID.Array_AssetRefByInnerObj | DataTypeID.Array_Class | DataTypeID.Array_InstanceRef;
-declare type StaticType = DataTypeID.SimpleType | DataTypeID.ValueType | DataTypeID.ValueTypeCreated | DataTypeID.TRS | DataTypeID.AssetRefByInnerObj;
+type StaticType = DataTypeID.SimpleType | DataTypeID.ValueType | DataTypeID.ValueTypeCreated | DataTypeID.TRS | DataTypeID.AssetRefByInnerObj;
 export declare class Node {
     selfType: DynamicType | DerivedType;
     refCount: number;

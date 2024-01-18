@@ -1,6 +1,6 @@
 import { ISceneFacadeState } from './scene-facade-state-interface';
-import GeneralSceneFacade from './general-scene-facade';
 import AnimationSceneFacade from './animation-scene-facade';
+import GeneralSceneFacade from './general-scene-facade';
 import PrefabSceneFacade from './prefab-scene-facade';
 import PreviewSceneFacade from './preview-scene-facade';
 import FiniteStateMachine from '../utils/state-machine/finite-state-machine';

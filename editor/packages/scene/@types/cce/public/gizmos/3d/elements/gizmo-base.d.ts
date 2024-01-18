@@ -10,6 +10,7 @@ declare class GizmoBase {
     protected _rootNode: any;
     protected _isControlBegin: boolean;
     protected _recorded: boolean;
+    protected _nodeSelected: boolean;
     protected onTargetUpdate?(): void;
     protected init?(): void;
     protected onShow?(): void;
@@ -50,6 +51,7 @@ declare class GizmoBase {
     onEditorCameraMoved(): void;
     registerCameraMovedEvent(): void;
     unregisterCameraMoveEvent(): void;
+    onNodeSelectionChanged(selection: boolean): void;
 }
 export default GizmoBase;
 //# sourceMappingURL=gizmo-base.d.ts.map

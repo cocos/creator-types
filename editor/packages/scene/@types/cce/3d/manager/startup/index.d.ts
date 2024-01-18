@@ -1,5 +1,5 @@
 import { EngineInfo } from '../../../../../../engine/@types';
-import type { IGameConfig, Node } from 'cc';
+import type { IGameConfig } from 'cc';
 export interface InitInfo extends EngineInfo {
     project: string;
     renderPipeline?: string;
@@ -55,12 +55,4 @@ declare class StartupManager {
 }
 declare const _default: StartupManager;
 export default _default;
-declare global {
-    export namespace cce {
-        let project: string;
-        let SceneFacadeManager: InstanceType<typeof import('../../facade/scene-facade-manager')['SceneFacadeManager']>;
-        let foregroundNode: Node;
-        let backgroundNode: Node;
-    }
-}
 //# sourceMappingURL=index.d.ts.map

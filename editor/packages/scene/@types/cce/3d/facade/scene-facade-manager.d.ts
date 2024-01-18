@@ -1,47 +1,10 @@
 import { SetPropertyOptions, MoveArrayOptions, RemoveArrayOptions, CutNodeOptions, PasteNodeOptions, CreateNodeOptions, RemoveNodeOptions, CreateComponentOptions, RemoveComponentOptions, ExecuteComponentMethodOptions, IAnimOperation, ExecuteSceneScriptMethodOptions, UnitTestInfo, QueryClassesOptions } from '../../../../@types/public';
 import { AnimationOperationOptions, EditorCameraInfo, IChangeNodeOptions, ISceneUndoOptions } from '../../../../@types/private';
 import ISceneFacade from '../../../../@types/scene-facade-interface';
-import cameraMgr from '../manager/camera';
-import nodeMgr from '../manager/node';
-import compMgr from '../manager/component';
-import gizmoMgr from '../manager/gizmos';
-import assetMgr from '../manager/asset';
-import prefabMgr from '../manager/prefab';
-import selectionMgr from '../manager/selection';
-import pluginMgr from '../manager/plugin';
 import type PreviewPlay from '../manager/preview-play';
-import terrainMgr from '../manager/terrain';
-import { engineManager as engineMgr } from '../manager/engine';
-import operationMgr from '../../public/operation';
-import shortcutMgr from '../manager/shortcut';
 import { Node, Component } from 'cc';
-import sceneMgr from '../manager/scene';
-import previewPlay from '../manager/preview-play';
-import scriptMgr from '../manager/scripts';
-import effectMgr from '../manager/effects';
-import animationMgr from '../manager/animation';
-import DumpEncode from '../../export/dump/encode';
-import DumpDecode from '../../export/dump/decode';
-import DumpUtils from '../../export/dump/utils';
 import * as cc from 'cc';
-import { previewMgr } from '../manager/preview';
-import { SceneUndoCommandID } from '../../export/undo';
-export declare type NodesInfoData = {
-    /** 是剪切还是拷贝 */
-    type: 'copy' | 'cut';
-    /** 需要拷贝/剪切的节点的 uuid  */
-    uuids: string[];
-    /** 使用系统剪切板，暂不支持跨编辑器剪切节点 */
-    projectPath: string;
-};
-declare global {
-    export namespace Editor {
-        namespace Clipboard {
-            function write(name: 'nodes-info', NodesInfoData: NodesInfoData): boolean;
-            function read(name: 'nodes-info'): NodesInfoData | null;
-        }
-    }
-}
+import type { SceneUndoCommandID } from '../../export/undo';
 declare class SceneFacadeManager implements ISceneFacade {
     private _projectType;
     private _highQuality;
@@ -195,6 +158,7 @@ declare class SceneFacadeManager implements ISceneFacade {
     setGridLineColor(color: number[]): void;
     getCameraProperty(): any;
     setCameraProperty(opts: any): void;
+    resetCameraProperty(): void;
     getCameraWheelSpeed(): number;
     setCameraWheelSpeed(speed: number): void;
     getCameraWanderSpeed(): number;
@@ -232,7 +196,7 @@ declare class SceneFacadeManager implements ISceneFacade {
     loadScript(uuid: string): Promise<void>;
     removeScript(info: any): Promise<void>;
     scriptChange(info: any): Promise<void>;
-    investigatePackerDriver(): Promise<void>;
+    investigatePackerDriver(): Promise<any>;
     querySelection(): string[];
     isSelectNode(uuid: string): boolean;
     selectNode(uuid: string): void;
@@ -309,36 +273,4 @@ declare class SceneFacadeManager implements ISceneFacade {
     queryAuxiliaryCurves(clipUUID: string): Promise<Record<string, import("../../../../@types/public").IPropCurveDumpData>>;
 }
 export { SceneFacadeManager };
-declare global {
-    export namespace cce {
-        let Camera: typeof cameraMgr;
-        let Animation: typeof animationMgr;
-        let Scene: typeof sceneMgr;
-        let Node: typeof nodeMgr;
-        let Script: typeof scriptMgr;
-        let Operation: typeof operationMgr;
-        let Gizmo: typeof gizmoMgr;
-        let Asset: typeof assetMgr;
-        let PreviewPlay: typeof previewPlay;
-        let Prefab: typeof prefabMgr;
-        let Effect: typeof effectMgr;
-        let Selection: typeof selectionMgr;
-        let Shortcut: typeof shortcutMgr;
-        let Preview: typeof previewMgr;
-        let Component: typeof compMgr;
-        let Terrain: typeof terrainMgr;
-        let Plugin: typeof pluginMgr;
-        let Engine: typeof engineMgr;
-        let NeedAnimState: typeof import('../manager/engine')['NeedAnimState'];
-        let ModelPreview: typeof previewMgr.modelPreview;
-        let MotionPreview: typeof previewMgr.motionPreview;
-        let TransitionPreview: typeof previewMgr.transitionPreview;
-        let ThumbnailManager: typeof import('../manager/thumbnail/index')['default'];
-        namespace Dump {
-            let encode: typeof DumpEncode;
-            let decode: typeof DumpDecode;
-            let utils: typeof DumpUtils;
-        }
-    }
-}
 //# sourceMappingURL=scene-facade-manager.d.ts.map

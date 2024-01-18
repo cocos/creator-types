@@ -1,6 +1,2 @@
-declare function check(): void;
-declare global {
-    export let AppModulePath: string;
-}
-export { check };
+export {};
 //# sourceMappingURL=preload.d.ts.map

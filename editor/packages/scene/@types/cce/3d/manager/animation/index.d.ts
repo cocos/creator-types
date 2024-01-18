@@ -1,5 +1,5 @@
 /// <reference types="node" />
-import { IChangeNodeOptions, IAnimOperation, EditorAnimationClipDump, IAniResultBase, IAniEditInfo, IPropCurveDumpData, AnimationOperationOptions } from '../../../../../@types/private';
+import { IChangeNodeOptions, IAnimOperation, EditorAnimationClipDump, IAniResultBase, IAniEditInfo, AnimationOperationOptions } from '../../../../../@types/private';
 import { AnimationClip, Node, AnimationState } from 'cc';
 import { EventEmitter } from 'events';
 import { IAnimData } from './type-defines';
@@ -239,7 +239,7 @@ export declare class AnimationManager extends EventEmitter implements ISceneEven
     private removeAnimationState;
     private clearAnimationState;
     onSceneOpened(scene: any): void;
-    queryAuxiliaryCurves(clipId: string): Promise<Record<string, IPropCurveDumpData>>;
+    queryAuxiliaryCurves(clipId: string): Promise<Record<string, import("../../../../../@types/private").IPropCurveDumpData>>;
 }
 declare const _default: AnimationManager;
 export default _default;

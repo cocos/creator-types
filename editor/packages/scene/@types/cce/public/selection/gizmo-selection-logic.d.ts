@@ -1,7 +1,7 @@
 import '../gizmos/utils/set-util';
 import SimpleSet from '../gizmos/utils/set-util';
-export declare type UUID = string;
-export declare type ProcessResult = {
+export type UUID = string;
+export type ProcessResult = {
     shouldSelects: SimpleSet<UUID>;
     shouldUnselects: SimpleSet<UUID>;
 };

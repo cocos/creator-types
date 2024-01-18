@@ -2,6 +2,7 @@ import { Color, Node } from 'cc';
 import QuadController from './quad-controller';
 declare class IconController extends QuadController {
     private _is3DIcon;
+    private _visibility;
     constructor(rootNode: Node, opts?: any);
     setTexture(texture: any): void;
     setTextureByUUID(uuid: string): void;

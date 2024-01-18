@@ -1,7 +1,7 @@
 import { Node, Scene } from 'cc';
 import type SceneManager from '../scene-manager';
 import { SceneModeType } from '../../../facade/scene-facade-state-interface';
-declare type UUIDMap = Map<string, string | UUIDMap>;
+type UUIDMap = Map<string, string | UUIDMap>;
 declare class SceneProxy {
     protected _sceneMgr: SceneManager;
     protected _sceneFacade: any;

@@ -1,5 +1,7 @@
-import { InitInfo } from '..';
+import type { InitInfo } from '..';
+import { EngineAddon } from './adapter-util';
 export declare class EngineStartup {
+    nativeEngine: EngineAddon | null;
     loadNativeEngine(): Promise<void>;
     /**
      * 将引擎文件 require 到当前进程

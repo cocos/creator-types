@@ -9,7 +9,7 @@ export declare class TerrainEditorMode {
     protected _gizmo?: any;
     constructor(gizmo: any);
     get gizmo(): any;
-    onUpdate(terrain: Terrain, dtime: number, isShiftDown: boolean): void;
+    onUpdate(terrain: Terrain, dTime: number, isShiftDown: boolean): void;
     onActivate(): void;
     onDeactivate(): void;
 }

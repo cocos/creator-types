@@ -18,7 +18,7 @@ import {
 
 import { Node, Vec3, Quat,Component } from 'cc';
 import type ParticleManager from '../source/script/3d/manager/particle';
-import { ISceneEvents } from '../source/script/3d/manager/scene-events-interface';
+import type { ISceneEvents } from '../source/script/3d/manager/scene-events-interface';
 import { AnimationOperationOptions, AssetInfo, EditorCameraInfo, IAssetMeta, IPropCurveDumpData } from './private';
 import { IAssetInfo } from '../../builder/@types/protect';
 
@@ -115,7 +115,7 @@ interface ISceneFacade extends ISceneEvents {
 
     /**
      * 查询当前模式中的回收组件
-     * @param uuid 
+     * @param uuid
      */
     queryRecycleComponent(uuid:string):Component|null;
     //////////
@@ -592,6 +592,7 @@ interface ISceneFacade extends ISceneEvents {
 
     getCameraProperty(): any;
     setCameraProperty(opts: any): void;
+    resetCameraProperty(): void;
     getCameraWheelSpeed(): number;
     setCameraWheelSpeed(speed: number): void;
     getCameraWanderSpeed(): number;

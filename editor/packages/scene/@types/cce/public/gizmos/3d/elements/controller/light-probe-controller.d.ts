@@ -9,7 +9,7 @@ import GizmoOperationEventListener from '../listener/gizmo-operation-event-liste
 import { ISceneMouseEvent } from '../../../../../../../@types/private';
 import SimpleSet from '../../../utils/set-util';
 import type LightProbeGizmo from '../components/light/light-probe-gizmo';
-export declare type NodeProbe = {
+export type NodeProbe = {
     node: Node;
     probe: Vec3;
 };

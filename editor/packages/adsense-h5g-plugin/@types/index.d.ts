@@ -1,8 +1,8 @@
 /// <reference path='../../../@types/index.d.ts'/>
 
-import { IBuildTaskOption } from '@editor/library-type/packages/builder/@types/public';
+import { IBuildTaskOption } from '@cocos/creator-types/editor/packages/builder/@types/public';
 
-export * from '@editor/library-type/packages/builder/@types/protected';
+export * from '@cocos/creator-types/editor/packages/builder/@types/protected';
 
 export interface ITaskOptions extends IBuildTaskOption {
     packages: { 'adsense-h5g-plugin': IOptions };

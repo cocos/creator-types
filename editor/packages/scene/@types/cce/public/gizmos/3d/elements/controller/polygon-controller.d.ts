@@ -26,6 +26,7 @@ declare class PolygonController extends EditableController {
     private _areaNode;
     private _areaMR;
     private _areaOpacity;
+    private _panSize;
     get points(): Vec3[];
     constructor(rootNode: Node);
     initShape(): void;
@@ -35,6 +36,11 @@ declare class PolygonController extends EditableController {
     createPolygonAreaHandle(): void;
     setColor(color: Color): void;
     updateData(points: Vec3[]): void;
+    /**
+     * 根据 points 更新 panPlane 的矩形大小，
+     * @param points - polygon 的 points
+     */
+    updatePanRectByPoints(points: Vec3[]): void;
     resetEditHandlesFromPoints(points: Vec3[]): void;
     createLineHandle(startPos: Vec3, endPos: Vec3, index: number): IHandleData;
     _updateLinesHandle(): void;

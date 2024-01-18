@@ -1,6 +1,12 @@
 
+export interface IRectLike {
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+}
 // ---- 一些 engine 基础数据 ---- start
-interface Vec2 {
+export interface Vec2 {
     x: number;
     y: number;
 }
@@ -11,7 +17,7 @@ export interface Vec3 {
     z: number;
 }
 
-interface Vec4 {
+export interface Vec4 {
     x: number;
     y: number;
     z: number;
@@ -75,7 +81,7 @@ interface Mat4 {
 }
 // ---- 一些 engine 基础数据 ---- end
 
-// ---- 操作消息的参数定义 --- strart
+// ---- 操作消息的参数定义 --- start
 
 // set-property 消息的 options 定义
 export interface SetPropertyOptions {
@@ -181,7 +187,7 @@ export interface ExecuteSceneScriptMethodOptions {
     args: any[];
 }
 
-export type IPropertyValueType = IProperty | IProperty[] | null | undefined | number | boolean | string | Vec3 | Vec2;
+export type IPropertyValueType = IProperty | IProperty[] | null | undefined | number | boolean | string | Vec4 | Vec3 | Vec2;
 
 export interface IPropertyGroupOptions {
     id: string // 默认 'default'
@@ -190,12 +196,19 @@ export interface IPropertyGroupOptions {
     style: string // 默认为 'tab'
 }
 
+export type IPropertyLock = { 
+    default: number; 
+    message: string 
+};
+
 export interface IProperty {
     value: { [key: string]: IPropertyValueType } | IPropertyValueType;
     default?: any; // 默认值
 
     // 多选节点之后，这里存储多个数据，用于自行判断多选后的显示效果，无需更新该数据
     values?: ({ [key: string]: IPropertyValueType } | IPropertyValueType)[];
+
+    lock?: { [key in keyof Vec4]?: IPropertyLock };
 
     cid?: string;
     type?: string;

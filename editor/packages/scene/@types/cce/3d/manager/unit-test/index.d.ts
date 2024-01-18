@@ -1,5 +1,5 @@
 import { UnitTestInfo } from '../../../../../@types/public';
-import { SceneFacadeManager } from '../../facade/scene-facade-manager';
+import type { SceneFacadeManager } from '../../facade/scene-facade-manager';
 declare class UnitTestManager {
     private _unitTestMap;
     constructor();

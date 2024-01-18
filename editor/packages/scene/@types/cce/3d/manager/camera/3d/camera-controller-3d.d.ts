@@ -51,8 +51,8 @@ declare class CameraController3D extends CameraControllerBase {
     private _wanderMode;
     isMoving(): boolean;
     view?: number;
-    hTicks?: LinearTicks;
-    vTicks?: LinearTicks;
+    hTicks: LinearTicks;
+    vTicks: LinearTicks;
     shiftKey?: boolean;
     altKey?: boolean;
     get lineColor(): Color;
@@ -88,7 +88,9 @@ declare class CameraController3D extends CameraControllerBase {
      * 焦点转向某个节点
      * 如果传入 nodes，则转向这些节点
      * 如果未传入 nodes，则转向场景中心
-     * @param {*} nodes
+     * @param nodeUuids
+     * @param editorCameraInfo
+     * @param immediate
      */
     focus(nodeUuids?: string[] | null, editorCameraInfo?: EditorCameraInfo, immediate?: boolean): void;
     alignNodeToSceneView(nodeUuids: string[]): Promise<void>;

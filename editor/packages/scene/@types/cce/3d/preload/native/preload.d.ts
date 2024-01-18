@@ -1,3 +1,2 @@
-declare function check(): void;
-export { check };
+export {};
 //# sourceMappingURL=preload.d.ts.map

@@ -1,8 +1,8 @@
 /// <reference path='../../../@types/index'/>
-export * from '@editor/library-type/packages/builder/@types/protected';
+export * from '@cocos/creator-types/editor/packages/builder/@types/protected';
 
-import { IInternalBuildOptions, InternalBuildResult } from '@editor/library-type/packages/builder/@types/protected';
-import { IOptions as INativeOption } from '@editor/library-type/packages/native';
+import { IInternalBuildOptions, InternalBuildResult } from '@cocos/creator-types/editor/packages/builder/@types/protected';
+import { IOptions as INativeOption } from '@cocos/creator-types/editor/packages/native';
 
 export type IOrientation = 'landscape' | 'portrait';
 

@@ -1,6 +1,6 @@
 import { Scene, Component, Node, Prefab } from 'cc';
 import { IOptionBase } from '../../../../../@types/private';
-declare type CompPrefabInfo = Prefab._utils.CompPrefabInfo;
+type CompPrefabInfo = Prefab._utils.CompPrefabInfo;
 declare const CompPrefabInfo: typeof Prefab._utils.CompPrefabInfo;
 interface IComponentPrefabData {
     prefabInfo: CompPrefabInfo | null;

@@ -10,6 +10,7 @@ declare class IconGizmoBase extends GizmoBase {
      */
     disableOnSelected: boolean;
     init(): void;
+    show(): void;
     onShow(): void;
     onHide(): void;
     checkVisible(): boolean;
@@ -24,6 +25,7 @@ declare class IconGizmoBase extends GizmoBase {
     updateControllerTransform(): void;
     onTargetUpdate(): void;
     onNodeChanged(event: IChangeNodeOptions): void;
+    onNodeSelectionChanged(selection: boolean): void;
 }
 export default IconGizmoBase;
 //# sourceMappingURL=icon-gizmo-base.d.ts.map

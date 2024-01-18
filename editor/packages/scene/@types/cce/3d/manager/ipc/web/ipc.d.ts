@@ -1,5 +1,5 @@
 import ipc from './webview';
-export declare type CustomWebIPC = {
+export type CustomWebIPC = {
     startup: () => void;
     clearQueue: () => void;
 } & typeof ipc;

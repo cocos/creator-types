@@ -1,4 +1,4 @@
-import { SceneFacadeManager } from '../../facade/scene-facade-manager';
+import type { SceneFacadeManager } from '../../facade/scene-facade-manager';
 interface IUnitTest {
     test(facadeMgr: SceneFacadeManager): Promise<boolean>;
     clear(): Promise<boolean>;

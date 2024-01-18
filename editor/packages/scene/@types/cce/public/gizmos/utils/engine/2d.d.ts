@@ -1,6 +1,7 @@
 /// <reference path="../../../../../../../../../resources/3d/engine/bin/.declarations/cc.d.ts" />
 /// <reference path="3d.d.ts" />
 /// <reference path="../../3d/gizmo-manager.d.ts" />
+/// <reference path="../../../../3d/manager/asset/asset-watcher.d.ts" />
 import EngineInterface from './engine-interface';
 import { Node } from 'cc';
 export declare class Engine2D implements EngineInterface {

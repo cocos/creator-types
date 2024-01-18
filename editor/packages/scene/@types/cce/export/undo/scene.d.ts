@@ -16,8 +16,8 @@ interface ISceneUndoManager extends UndoManagerBase {
     record(uuid?: string): void;
     abort(): void;
 }
-declare type IDump = INode | IScene | IComponent | null;
-declare type SceneUndoCommandID = string;
+type IDump = INode | IScene | IComponent | null;
+type SceneUndoCommandID = string;
 /**
  * 场景的 undo 命令类型，与 SceneUndoManager 搭配使用
 

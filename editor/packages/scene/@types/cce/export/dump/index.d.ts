@@ -1,7 +1,7 @@
 import { Node, Component } from 'cc';
-import { IComponent, IProperty, INode, IScene } from '../../../../@types/public';
+import { IComponent, INode, IScene } from '../../../../@types/public';
 declare class DumpUtil {
-    dumpProperty(node: Node, path: string): IProperty | INode | IScene | null;
+    dumpProperty(node: Node, path: string): import("../../../../@types/public").IProperty | INode | IScene | null;
     /**
      * 生成一个 node 的 dump 数据
      * @param {*} node
@@ -47,7 +47,7 @@ declare class DumpUtil {
     /**
      * encodeObject
      */
-    encodeObject(object: any, attributes: any, owner?: any, objectKey?: string, isTemplate?: boolean): IProperty;
+    encodeObject(object: any, attributes: any, owner?: any, objectKey?: string, isTemplate?: boolean): import("../../../../@types/public").IProperty;
     /**
      * 获取类型的默认dump数据
      * @param type

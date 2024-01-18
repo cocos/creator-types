@@ -1,7 +1,7 @@
 /// <reference path='../../../@types/index'/>
 
-export * from '@editor/library-type/packages/builder/@types/protected';
-import { IInternalBuildOptions, IPolyFills, ISettings } from '@editor/library-type/packages/builder/@types/protected';
+export * from '@cocos/creator-types/editor/packages/builder/@types/protected';
+import { IInternalBuildOptions, IPolyFills, ISettings } from '@cocos/creator-types/editor/packages/builder/@types/protected';
 
 export type IOrientation = 'landscape' | 'portrait';
 

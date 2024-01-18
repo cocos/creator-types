@@ -7,9 +7,9 @@ export declare class NodeUtils {
     getObbFromUITransform(modelComp: UITransform, mat: Mat4): Vec3[];
     getObbFromMeshRenderer(modelComp: MeshRenderer, mat: Mat4): Vec3[];
     getObbFromBound(aabb: geometry.AABB): Vec3[];
-    getScenePosition(node: Node): Vec3;
+    getScenePosition(node: Node): Readonly<Vec3>;
     setScenePosition(node: Node, value: Vec3): void;
-    getSceneRotation(node: Node): Quat | 0;
+    getSceneRotation(node: Node): 0 | Quat;
     setSceneRotation(node: Node, value: Quat): void;
     getWorldPosition(node: Node): Vec3;
     setWorldPosition(node: Node, value: Vec3): void;
@@ -30,21 +30,7 @@ export declare class NodeUtils {
      * @returns
      */
     hasComponent(node: Node, comps: string[]): boolean;
-    _destroyForUndo(nodeOrComp: any, recordFunc: Function): void;
     getNodePath(node: Node | null): string;
-    getChildUuids(root: any, insertRoot: any): any[];
-    /**
-     * 从一个 asset 内创建新的节点
-     * @param {*} uuid
-     * @param {*} callback
-     */
-    createNodeFromAsset(uuid: string, callback: Function): Promise<void>;
-    /**
-     * 根据 class 创建一个新的节点
-     * @param {*} classID
-     * @param {*} callback
-     */
-    createNodeFromClass(classID: string, callback: Function): void;
     makeVec3InPrecision(inVec3: Vec3, precision: number): Vec3;
     makeVec2InPrecision(inVec2: Vec2, precision: number): Vec2;
     getWorldPosition3D(node: Node, out?: Vec3): Vec3;

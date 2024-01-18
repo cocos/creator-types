@@ -23,5 +23,14 @@ export declare function decodePatch(path: string, dump: any, node: any): Promise
 export declare function resetProperty(node: any, path: string): void;
 export declare function updatePropertyFromNull(node: any, path: string): void;
 export declare function decodeTargetOverrides(dumpedTargetOverrides: ITargetOverrideInfo[]): Prefab._utils.TargetOverrideInfo[];
-export * as default from './decode';
+declare const _default: {
+    decodeScene: typeof decodeScene;
+    decodeNode: typeof decodeNode;
+    decodePatch: typeof decodePatch;
+    resetProperty: typeof resetProperty;
+    updatePropertyFromNull: typeof updatePropertyFromNull;
+    decodeMountedRoot: typeof decodeMountedRoot;
+    decodeTargetOverrides: typeof decodeTargetOverrides;
+};
+export default _default;
 //# sourceMappingURL=decode.d.ts.map

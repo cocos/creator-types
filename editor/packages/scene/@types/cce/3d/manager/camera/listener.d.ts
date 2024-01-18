@@ -1,4 +1,4 @@
-import { Camera } from '.';
+import type { Camera } from '.';
 /**
  * 将摄像机操作绑定到摄像机管理器上
  * @param {*} camera

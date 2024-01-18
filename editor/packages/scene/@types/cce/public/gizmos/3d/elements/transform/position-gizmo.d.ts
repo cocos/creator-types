@@ -6,7 +6,7 @@ import PositionController from '../controller/position-controller';
 import GizmoEventListener from '../listener/gizmo-event-listener';
 import TransformGizmo from './transform-gizmo';
 declare class PositionGizmo extends TransformGizmo {
-    protected _controller: PositionController | null;
+    protected _controller: PositionController;
     disableUndo: boolean;
     private readonly _nodesWorldPosList;
     private _snapMode;
@@ -22,8 +22,8 @@ declare class PositionGizmo extends TransformGizmo {
     init(): void;
     layer(): string;
     createController(): void;
-    get controller(): PositionController | null;
-    set controller(val: PositionController | null);
+    get controller(): PositionController;
+    set controller(val: PositionController);
     addMouseEventListener(listener: GizmoEventListener): string;
     removeMouseEventListener(id: string): void;
     checkLock(event: IControlMouseEvent): void;

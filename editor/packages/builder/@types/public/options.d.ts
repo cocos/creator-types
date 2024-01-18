@@ -18,8 +18,29 @@ export interface IPhysicsConfig {
         epsilon: number;
     };
 }
-
+// 物理配置
+export interface ICollisionMatrix {
+    [x: string]: number;
+}
+export interface IVec3Like {
+    x: number;
+    y: number;
+    z: number;
+}
+export interface IPhysicsMaterial {
+    friction: number; // 0.5
+    rollingFriction: number; // 0.1
+    spinningFriction: number; // 0.1
+    restitution: number; // 0.1
+}
 export type IConsoleType = 'log' | 'warn' | 'error' | 'debug';
+
+export interface IConsoleMessage {
+    type: ICustomConsoleType,
+    value: string;
+    num: number;
+    time: string;
+}
 
 export interface IBuildOptionBase {
     // packAutoAtlas: boolean;
@@ -71,6 +92,19 @@ export interface IBuildOptionBase {
 
     buildMode?: 'normal' | 'bundle' | 'script';
 }
+export interface IBundleOptions {
+    root: string, // bundle 的根目录, 开发者勾选的目录，如果是 main 包等内置 Bundle，这个字段任意字符串均可
+    priority?: number, // bundle 的优先级
+    compressionType?: BundleCompressionType, // bundle 的压缩类型
+    isRemote?: boolean, // bundle 是否是远程包
+    output?: boolean, // 是否输出此 bundle 包（默认为 true）
+    name: string;
+    // isEncrypted: boolean // bundle 中的代码是否加密，原生平台使用
+
+    dest?: string, // bundle 的输出目录
+    scriptDest?: string, // 脚本的输出目录
+    bundleFilterConfig?: BundleFilterConfig[];
+}
 
 /**
  * 构建所需的完整参数
@@ -84,6 +118,7 @@ export interface IBuildTaskOption extends IBuildOptionBase {
     outputName: string;
     taskName: string;
     polyfills?: IPolyFills;
+    buildScriptTargets?: string;
     nextStages?: string[];
     resolution: {
         width: number;
@@ -93,7 +128,6 @@ export interface IBuildTaskOption extends IBuildOptionBase {
 
     // 构建阶段性任务绑定分组
     buildStageGroup?: Record<string, string[]>;
-
     packages?: Record<string, any>;
     id?: string; // 手动配置构建任务 id
     // recompileConfig?: IRecompileConfig;
@@ -109,6 +143,10 @@ export interface IBuildTaskOption extends IBuildOptionBase {
     useBuildTextureCompressCache?: boolean;
     useBuildAutoAtlasCache?: boolean;
     __version__?: string;
+}
+
+export interface IBundleTaskOption extends IBuildTaskOption {
+    dest: string;
 }
 
 export type UUID = string;

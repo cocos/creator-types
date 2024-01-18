@@ -17,6 +17,16 @@ declare class ControllerShape {
         minPos: Vec3;
         maxPos: Vec3;
     };
+    /**
+     * 生成 MeshRenderer 所需要的 position 数据
+     * 1. positions - mash 中 geometricInfo positions
+     * 2. min/max position AABB 用于 model 创建 shape 包围盒大小
+     */
+    calcPositionData(center: Readonly<Vec3>, width: number, height: number, normal?: Readonly<Vec3>, needBoundingBox?: boolean): {
+        positions: Vec3[];
+        minPos: Vec3 | undefined;
+        maxPos: Vec3 | undefined;
+    };
     calcQuadData(center: Readonly<Vec3>, width: number, height: number, normal?: Readonly<Vec3>, needBoundingBox?: boolean): {
         positions: Vec3[];
         normals: any[];

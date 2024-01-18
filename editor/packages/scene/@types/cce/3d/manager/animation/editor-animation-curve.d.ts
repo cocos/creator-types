@@ -2,7 +2,7 @@ import { IPropCurveDumpData } from '../../../../../@types/private';
 import { animation, Node } from 'cc';
 import EditorAnimationCurveBase from './editor-animation-curve-base';
 import { IAnimationClipData, IPropCustomData, IKeyframe, ICurveData } from './type-defines';
-import EditorAnimationCombinedCurve from './editor-animation-combined-curve';
+import type EditorAnimationCombinedCurve from './editor-animation-combined-curve';
 export declare class EditorAnimationCurve extends EditorAnimationCurveBase {
     private _parentCurve;
     get parentCurve(): EditorAnimationCombinedCurve | null;

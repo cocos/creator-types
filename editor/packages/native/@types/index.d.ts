@@ -1,6 +1,6 @@
 /// <reference path='../../../@types/index'/>
-export * from '@editor/library-type/packages/builder/@types/protected';
-import { IInternalBuildOptions, InternalBuildResult, IPolyFills, IBuildScriptParam } from '@editor/library-type/packages/builder/@types/protected';
+export * from '@cocos/creator-types/editor/packages/builder/@types/protected';
+import { IInternalBuildOptions, InternalBuildResult, IPolyFills, IBuildScriptParam } from '@cocos/creator-types/editor/packages/builder/@types/protected';
 import { CocosParams } from 'native-pack-tool';
 
 declare enum NetMode {

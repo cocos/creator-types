@@ -1,4 +1,3 @@
-/// <reference types="../../../../node_modules/cc/cc" />
 import { Asset, ValueType, Constructor } from 'cc';
 import { PropertyOptions, IArrayOptions, IClassOptions, ICustomClassOptions, IObjParsingInfo } from './parser';
 import { Builder, IBuilderOptions } from './base-builder';

@@ -1,8 +1,8 @@
 import { IDumpType, IKeyDumpData } from '../../../../../@types/private';
 import { animation, AnimationClip, Animation, Node, RealInterpolationMode, TangentWeightMode, RealKeyframeValue } from 'cc';
-declare type IValueProxyFactory = animation.IValueProxyFactory;
-declare type CompressedEasingMethods = Record<number, any>;
-declare type TargetModifier = animation.TargetPath;
+type IValueProxyFactory = animation.IValueProxyFactory;
+type CompressedEasingMethods = Record<number, any>;
+type TargetModifier = animation.TargetPath;
 interface IPropData {
     combinedType?: IDumpType;
     type?: IDumpType;

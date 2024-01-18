@@ -30,9 +30,9 @@ declare class SnapConfigs extends EventEmitter {
     getPureDataObject(): ISnapConfigData;
     initFromData(data: ISnapConfigData): void;
 }
-declare type TransformToolDataToolNameType = 'position' | 'rotation' | 'scale' | 'rect';
-declare type TransformToolDataCoordinateType = 'local' | 'global';
-declare type TransformToolDataPivotType = 'pivot' | 'center';
+type TransformToolDataToolNameType = 'position' | 'rotation' | 'scale' | 'rect';
+type TransformToolDataCoordinateType = 'local' | 'global';
+type TransformToolDataPivotType = 'pivot' | 'center';
 declare class TransformToolData extends EventEmitter {
     private _toolName;
     private _coordinate;

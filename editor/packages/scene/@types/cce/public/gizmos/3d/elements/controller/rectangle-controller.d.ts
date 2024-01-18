@@ -14,7 +14,7 @@ declare enum RectHandleType {
     Area = "area",
     Anchor = "anchor"
 }
-declare type AxisDir = {
+type AxisDir = {
     x?: Vec3;
     y?: Vec3;
 } & Partial<Record<RectHandleType, Vec3>>;

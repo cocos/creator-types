@@ -41,7 +41,7 @@ export declare class EngineManager extends EventEmitter implements ISceneEvents 
     startTick(): void;
     stopTick(): void;
     tickInEditMode(deltaTime: number): void;
-    getGeometryRenderer(): (GeometryRenderer & Pick<CCGeometryRenderer, "addDashedLine" | "addTriangle" | "addQuad" | "addBoundingBox" | "addCross" | "addFrustum" | "addCapsule" | "addCylinder" | "addCone" | "addCircle" | "addArc" | "addPolygon" | "addDisc" | "addSector" | "addSphere" | "addTorus" | "addOctahedron" | "addBezier" | "addMesh" | "addIndexedMesh">) | null;
+    getGeometryRenderer(): GeometryRenderer & Pick<CCGeometryRenderer, "addDashedLine" | "addTriangle" | "addQuad" | "addBoundingBox" | "addCross" | "addFrustum" | "addCapsule" | "addCylinder" | "addCone" | "addCircle" | "addArc" | "addPolygon" | "addDisc" | "addSector" | "addSphere" | "addTorus" | "addOctahedron" | "addBezier" | "addMesh" | "addIndexedMesh">;
     enterState(state: NeedAnimState): void;
     exitState(state: NeedAnimState): void;
     resume(): void;

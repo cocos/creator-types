@@ -2469,19 +2469,9 @@ declare module "cc" {
      * @zh
      * 描边效果组件,用于字体描边,只能用于系统字体。
      *
-     * @example
-     * ```ts
-     * import { Node, Label, LabelOutline } from 'cc';
-     * // Create a new node and add label components.
-     * const node = new Node("New Label");
-     * const label = node.addComponent(Label);
-     * const outline = node.addComponent(LabelOutline);
-     * node.parent = this.node;
-     * ```
+     * @deprecated since v3.8.2, please use [[Label.enableOutline]] instead.
      */
     export class LabelOutline extends Component {
-        protected _color: math.Color;
-        protected _width: number;
         /**
          * @en
          * Outline color.
@@ -2489,11 +2479,7 @@ declare module "cc" {
          * @zh
          * 改变描边的颜色。
          *
-         * @example
-         * ```ts
-         * import { Color } from 'cc';
-         * outline.color = new Color(0.5, 0.3, 0.7, 1.0);
-         * ```
+         * @deprecated since v3.8.2, please use [[Label.outlineColor]] instead.
          */
         get color(): Readonly<math.Color>;
         set color(value: Readonly<math.Color>);
@@ -2504,16 +2490,18 @@ declare module "cc" {
          * @zh
          * 改变描边的宽度。
          *
-         * @example
-         * ```ts
-         * outline.width = 3;
-         * ```
+         * @deprecated since v3.8.2, please use [[Label.outlineWidth]] instead.
          */
         get width(): number;
         set width(value: number);
+        /**
+         * @deprecated since v3.8.2, please use [[Label.enableOutline]] instead.
+         */
         onEnable(): void;
+        /**
+         * @deprecated since v3.8.2, please use [[Label.enableOutline]] instead.
+         */
         onDisable(): void;
-        protected _updateRenderData(): void;
     }
     /**
      * @en
@@ -2870,18 +2858,10 @@ declare module "cc" {
     /**
      * @en Shadow effect for Label component, only for system fonts or TTF fonts.
      * @zh 用于给 Label 组件添加阴影效果，只能用于系统字体或 ttf 字体。
-     * @example
-     * import { Node, Label, LabelShadow } from 'cc';
-     * // Create a new node and add label components.
-     * const node = new Node("New Label");
-     * const label = node.addComponent(Label);
-     * const shadow = node.addComponent(LabelShadow);
-     * node.parent = this.node;
+     *
+     * @deprecated since v3.8.2, please use [[Label.enableShadow]] instead.
      */
     export class LabelShadow extends Component {
-        protected _color: math.Color;
-        protected _offset: math.Vec2;
-        protected _blur: number;
         /**
          * @en
          * Shadow color.
@@ -2889,11 +2869,7 @@ declare module "cc" {
          * @zh
          * 阴影的颜色。
          *
-         * @example
-         * ```ts
-         * import { Color } from 'cc';
-         * labelShadow.color = new Color(0.5, 0.3, 0.7, 1.0);
-         * ```
+         * @deprecated since v3.8.2, please use [[Label.shadowColor]] instead.
          */
         get color(): Readonly<math.Color>;
         set color(value: Readonly<math.Color>);
@@ -2904,11 +2880,7 @@ declare module "cc" {
          * @zh
          * 字体与阴影的偏移。
          *
-         * @example
-         * ```ts
-         * import { Vec2 } from 'cc';
-         * labelShadow.offset = new Vec2(2, 2);
-         * ```
+         * @deprecated since v3.8.2, please use [[Label.shadowOffset]] instead.
          */
         get offset(): math.Vec2;
         set offset(value: math.Vec2);
@@ -2919,16 +2891,18 @@ declare module "cc" {
          * @zh
          * 阴影的模糊程度。
          *
-         * @example
-         * ```ts
-         * labelShadow.blur = 2;
-         * ```
+         * @deprecated since v3.8.2, please use [[Label.shadowBlur]] instead.
          */
         get blur(): number;
         set blur(value: number);
+        /**
+         * @deprecated since v3.8.2, please use [[Label.enableShadow]] instead.
+         */
         onEnable(): void;
+        /**
+         * @deprecated since v3.8.2, please use [[Label.enableShadow]] instead.
+         */
         onDisable(): void;
-        protected _updateRenderData(): void;
     }
     /**
      * @en
@@ -2949,7 +2923,7 @@ declare module "cc" {
          */
         get opacity(): number;
         set opacity(value: number);
-        static setEntityLocalOpacityDirtyRecursively(node: Node, dirty: boolean, interruptParentOpacity: number): void;
+        static setEntityLocalOpacityDirtyRecursively(node: Node, dirty: boolean, interruptParentOpacity: number, setByParent: boolean): void;
         protected _opacity: number;
         onEnable(): void;
         onDisable(): void;
@@ -3251,6 +3225,66 @@ declare module "cc" {
         get underlineHeight(): number;
         set underlineHeight(value: number);
         /**
+         ** @en
+         ** Outline effect used to change the display, only for system fonts or TTF fonts.
+         **
+         ** @zh
+         ** 描边效果组件,用于字体描边,只能用于系统字体或 ttf 字体。
+         **/
+        get enableOutline(): boolean;
+        set enableOutline(value: boolean);
+        /**
+         * @en
+         * Outline color.
+         *
+         * @zh
+         * 改变描边的颜色。
+         */
+        get outlineColor(): math.Color;
+        set outlineColor(value: math.Color);
+        /**
+         * @en
+         * Change the outline width.
+         *
+         * @zh
+         * 改变描边的宽度。
+         */
+        get outlineWidth(): number;
+        set outlineWidth(value: number);
+        /**
+         * @en Shadow effect for Label component, only for system fonts or TTF fonts. Disabled when cache mode is char.
+         * @zh 用于给 Label 组件添加阴影效果，只能用于系统字体或 ttf 字体。在缓存模式为 char 时不可用。
+         */
+        get enableShadow(): boolean;
+        set enableShadow(value: boolean);
+        /**
+         * @en
+         * Shadow color.
+         *
+         * @zh
+         * 阴影的颜色。
+         */
+        get shadowColor(): math.Color;
+        set shadowColor(value: math.Color);
+        /**
+         * @en
+         * Offset between font and shadow.
+         *
+         * @zh
+         * 字体与阴影的偏移。
+         */
+        get shadowOffset(): math.Vec2;
+        set shadowOffset(value: math.Vec2);
+        /**
+         * @en
+         * A non-negative float specifying the level of shadow blur.
+         *
+         * @zh
+         * 阴影的模糊程度。
+         */
+        get shadowBlur(): number;
+        set shadowBlur(value: number);
+        /**
          * @deprecated since v3.7.0, this is an engine private interface that will be removed in the future.
          */
         get spriteFrame(): SpriteFrame | __private._cocos_2d_assembler_label_font_utils__LetterRenderTexture | null;
@@ -3288,6 +3322,13 @@ declare module "cc" {
         protected _isUnderline: boolean;
         protected _underlineHeight: number;
         protected _cacheMode: CacheMode;
+        protected _enableOutline: boolean;
+        protected _outlineColor: math.Color;
+        protected _outlineWidth: number;
+        protected _enableShadow: boolean;
+        protected _shadowColor: math.Color;
+        protected _shadowOffset: math.Vec2;
+        protected _shadowBlur: number;
         protected _N$file: Font | null;
         protected _texture: SpriteFrame | __private._cocos_2d_assembler_label_font_utils__LetterRenderTexture | null;
         protected _ttfSpriteFrame: SpriteFrame | null;
@@ -7204,7 +7245,7 @@ declare module "cc" {
             onStateMachineEnter(controller: AnimationController): void;
             /**
              * @en
-             * Called when a state machine right after it entered.
+             * Called when a state machine is going to be exited.
              * @zh
              * 在即将退出状态机时调用。
              * @param controller The animation controller it within.
@@ -8455,7 +8496,8 @@ declare module "cc" {
             EXTERNAL_OES = 4,
             EXTERNAL_NORMAL = 8,
             LAZILY_ALLOCATED = 16,
-            MUTABLE_VIEW_FORMAT = 64
+            MUTABLE_VIEW_FORMAT = 64,
+            MUTABLE_STORAGE = 128
         }
         export enum FormatFeatureBit {
             NONE = 0,
@@ -8823,6 +8865,7 @@ declare module "cc" {
             maxDepth: number;
             constructor(left?: number, top?: number, width?: number, height?: number, minDepth?: number, maxDepth?: number);
             copy(info: Readonly<Viewport>): Viewport;
+            reset(): void;
         }
         export class Color {
             x: number;
@@ -8832,6 +8875,7 @@ declare module "cc" {
             constructor(x?: number, y?: number, z?: number, w?: number);
             copy(info: Readonly<Color>): Color;
             set(x: number, y: number, z: number, w: number): Color;
+            reset(): void;
         }
         export class BindingMappingInfo {
             maxBlockCounts: number[];
@@ -9144,6 +9188,7 @@ declare module "cc" {
             bindings: DescriptorSetLayoutBinding[];
             constructor(bindings?: DescriptorSetLayoutBinding[]);
             copy(info: Readonly<DescriptorSetLayoutInfo>): DescriptorSetLayoutInfo;
+            reset(): void;
         }
         export class DescriptorSetInfo {
             layout: DescriptorSetLayout;
@@ -9937,6 +9982,7 @@ declare module "cc" {
             get attributes(): Attribute[];
             get blocks(): UniformBlock[];
             get samplers(): UniformSampler[];
+            get stages(): ShaderStage[];
             protected _name: string;
             protected _stages: ShaderStage[];
             protected _attributes: Attribute[];
@@ -11355,7 +11401,6 @@ declare module "cc" {
                 protected _shaders: gfx.Shader[] | null;
                 protected _subMesh: RenderingSubMesh | null;
                 protected _patches: IMacroPatch[] | null;
-                protected _globalPatches: MacroRecord | null;
                 protected _priority: pipeline.RenderPriority;
                 protected _inputAssembler: gfx.InputAssembler | null;
                 protected _descriptorSet: gfx.DescriptorSet | null;
@@ -11896,6 +11941,12 @@ declare module "cc" {
                 get distance(): number;
                 set distance(val: number);
                 /**
+                 * @en Positional offset values in planar shading calculations.
+                 * @zh 平面阴影计算中的位置偏移值。
+                 */
+                get planeBias(): number;
+                set planeBias(val: number);
+                /**
                  * @en Shadow color.
                  * @zh 阴影颜色。
                  */
@@ -11936,6 +11987,7 @@ declare module "cc" {
                 protected _enabled: boolean;
                 protected _type: number;
                 protected _distance: number;
+                protected _planeBias: number;
                 protected _normal: math.Vec3;
                 protected _shadowColor: math.Color;
                 protected _size: math.Vec2;
@@ -14024,7 +14076,8 @@ declare module "cc" {
              * @zh 获取当前向量和指定向量之间的有符号弧度。<br/>
              * 有符号弧度的取值范围为 (-PI, PI]，当前向量可以通过逆时针旋转有符号角度与指定向量同向。<br/>
              * @param other specified vector
-             * @return The signed angle between the current vector and the specified vector (in radians); if there is a zero vector in the current vector and the specified vector, 0 is returned.
+             * @return The signed angle between the current vector and the specified vector (in radians);
+             * if there is a zero vector in the current vector and the specified vector, 0 is returned.
              */
             signAngle(other: Vec2): number;
             /**
@@ -16734,9 +16787,15 @@ declare module "cc" {
             static fromVec4(value: Vec4, out?: Color): Color;
             /**
              * @en Converts the hexadecimal formal color into rgb formal and save the results to out color.
+             *   the argument `hex` could be hex-string or hex-number (8-digit or 6-digit).
+             *   the hex-string should be like : '#12345678' '#123456', '123456', '12345678'.
+             *   the hex-number should be like : 0x12345678, 0x123456 .
              * @zh 从十六进制颜色字符串中读入颜色到 out 中
+             *   参数 hex 支持 16进制字符串 或者 16进制数值 (8位数字 或者 6位数字).
+             *   16进制字符串的格式应该类似: '#12345678' '#123456', '123456', '12345678'.
+             *   16进制数值的格式应该类似:  0x12345678, 0x123456 .
              */
-            static fromHEX<Out extends IColorLike>(out: Out, hexString: string): Out;
+            static fromHEX<Out extends IColorLike>(out: Out, hex: string | number): Out;
             /**
              * @en Add two colors by components. And save the results to out color.
              * @zh 逐通道颜色加法
@@ -19389,7 +19448,7 @@ declare module "cc" {
             constructor();
         }
     }
-    export const VERSION = "3.8.1";
+    export const VERSION = "3.8.2";
     /**
      * @en
      * The main namespace of Cocos engine, all engine core classes, functions, properties and constants are defined in this namespace.
@@ -26042,10 +26101,16 @@ declare module "cc" {
          */
         LAYER_CHANGED = "layer-changed",
         /**
-         * @en The event type for node's sibling order changed.
-         * @zh 当节点在兄弟节点中的顺序发生变化时触发的事件。
+         * @en This event indicates that the order of child nodes has been changed.
+         * @zh 该事件表示子节点的排序发生了改变。
+         * @deprecated since v3.8.2 @en Please use `CHILDREN_ORDER_CHANGED`. @zh 请使用 `CHILDREN_ORDER_CHANGED`。
          */
         SIBLING_ORDER_CHANGED = "sibling-order-changed",
+        /**
+         * @en This event indicates that the order of child nodes has been changed.
+         * @zh 该事件表示子节点的排序发生了改变。
+         */
+        CHILDREN_ORDER_CHANGED = "sibling-order-changed",
         /**
          * @en
          * Note: This event is only emitted from the top most node whose active value did changed,
@@ -26385,6 +26450,12 @@ declare module "cc" {
         set planeHeight(val: number);
         get planeHeight(): number;
         /**
+         * @en Positional offset values in planar shading calculations.
+         * @zh 平面阴影计算中的位置偏移值。
+         */
+        set planeBias(val: number);
+        get planeBias(): number;
+        /**
          * @en get or set shadow max received
          * @zh 获取或者设置阴影接收的最大光源数量
          */
@@ -26400,6 +26471,7 @@ declare module "cc" {
         protected _type: number;
         protected _normal: math.Vec3;
         protected _distance: number;
+        protected _planeBias: number;
         protected _shadowColor: math.Color;
         protected _maxReceived: number;
         protected _size: math.Vec2;
@@ -28964,7 +29036,7 @@ declare module "cc" {
                 number
             ];
             samplerHash?: number;
-            value?: number[] | string;
+            value?: number[] | string | __private._cocos_asset_assets_texture_base__TextureBase;
             linear?: boolean;
         }
         export interface IPassStates {
@@ -32293,7 +32365,7 @@ declare module "cc" {
          * @en The event type for node's sibling order changed.
          * @zh 当节点在兄弟节点中的顺序发生变化时触发的事件。
          *
-         * @deprecated since v3.3, please use Node.EventType.SIBLING_ORDER_CHANGED instead
+         * @deprecated since v3.3, please use Node.EventType.CHILDREN_ORDER_CHANGED instead
          */
         SIBLING_ORDER_CHANGED = "sibling-order-changed"
     }
@@ -33649,6 +33721,11 @@ declare module "cc" {
          * @param y - y position
          */
         setPrevPoint(x: number, y: number): void;
+        /**
+         * @zh Touch 对象的原始数据不应该被修改。如果你需要这么做，最好克隆一个新的对象。
+         * @en The original Touch object shouldn't be modified. If you need to, it's better to clone a new one.
+         */
+        clone(): Touch;
     }
     /**
      * @en
@@ -33719,6 +33796,27 @@ declare module "cc" {
          * @param target - The event listener's target and callee
          */
         off<K extends keyof __private._cocos_input_input__InputEventMap>(eventType: K, callback?: __private._cocos_input_input__InputEventMap[K], target?: any): void;
+        /**
+         * @en
+         * Get touch object by touch ID.
+         * @zh
+         * 通过 touch ID 获取 touch对象。
+         */
+        getTouch(touchID: number): Readonly<Touch> | undefined;
+        /**
+         * @en
+         * Get all the current touches objects as array.
+         * @zh
+         * 获取当前 所有touch对象 的数组。
+         */
+        getAllTouches(): Touch[];
+        /**
+         * @en
+         * Get the number of touches.
+         * @zh
+         * 获取当前 touch 对象的数量。
+         */
+        getTouchCount(): number;
         /**
          * @en
          * Sets whether to enable the accelerometer event listener or not.
@@ -34188,11 +34286,11 @@ declare module "cc" {
          * @param storagePath @en Storage path for downloaded file @zh 下载文件存储路径
          * @param identifier  @en identifier @zh 标识符
          */
-        export type DownloadTask = {
+        export interface DownloadTask {
             requestURL: string;
             storagePath: string;
             identifier: string;
-        };
+        }
         /**
          * @en DownloaderTask @zh 下载任务对象
          * @param requestURL @en Request download resource URL  @zh 请求下载资源的URL
@@ -34200,11 +34298,11 @@ declare module "cc" {
          * @param identifier  @en identifier @zh 标识符
          * @deprecated since v3.7.0, please use `DownloadTask` to instead.
          */
-        export type DownloaderTask = {
+        export interface DownloaderTask {
             requestURL: string;
             storagePath: string;
             identifier: string;
-        };
+        }
         /**
          * @en DownloaderHints @zh 下载任务的配置接口
          * @param countOfMaxProcessingTasks
@@ -35148,6 +35246,55 @@ declare module "cc" {
              */
             export const argv: Readonly<string[]>;
         }
+        /**
+         * @en This object provides properties related to thermal characteristics and an optional callback function to track changes in thermal status.
+         *     It is supported only on Android platforms with an API level of 31 or higher.
+         * @zh 该对象提供与热特性相关的属性以及用于跟踪热状态变化的可选回调函数。仅支持 API 等级为 31 或更高的 Android 平台。
+         *
+         * @see https://developer.android.com/ndk/reference/group/thermal#group___thermal_1ga1055f6c8d5910a1904162bea75807314
+         */
+        export const adpf: {
+            /**
+             * @en Provides an estimate of how much thermal headroom the device currently has before hitting severe throttling. The value range is a non-negative float, where 0.0 represents a fixed distance from overheating, 1.0 indicates the device will be severely throttled, and values greater than 1.0 may imply even heavier throttling.
+             * @zh 提供设备在达到严重节流之前当前有多少热余量的估计值。值的范围是非负浮点数，其中0.0表示距离过热的固定距离，1.0表示设备将被严重限制，而大于1.0的值可能表示更重的限制。
+             * @see https://developer.android.com/ndk/reference/group/thermal#group___thermal_1ga1055f6c8d5910a1904162bea75807314
+             */
+            readonly thermalHeadroom: number;
+            /**
+             * @en A number indicating the current thermal status
+             * @zh 表示当前热状态的数字
+             */
+            readonly thermalStatus: number;
+            /**
+             * @en  A number indicating the minimum threshold for thermal status
+             * @zh 表示热状态的最大阈值的数字
+             */
+            readonly thermalStatusMin: number;
+            /**
+             * @en  A number indicating the maximum threshold for thermal status
+             * @zh 表示热状态的最大阈值的数字
+             */
+            readonly thermalStatusMax: number;
+            /**
+             * @en  A normalized value of the current thermal status.  It's computed based on the formula:
+             *     (thermalStatus - thermalStatusMin) / thermalStatusMax.
+             *     This value ranges between 0 and 1, giving a relative measure of the current thermal status against its minimum and maximum thresholds.
+             * @zh 当前热状态的归一化值，范围在 0 到 1 之间.  它是基于以下公式计算的：  (thermalStatus - thermalStatusMin) / thermalStatusMax.
+             *     提供了当前热状态相对于其最小和最大阈值的相对测量。
+             */
+            readonly thermalStatusNormalized: number;
+            /**
+             * @en An optional callback function that is triggered when the thermal status changes
+             * @zh 该对象提供与热特性相关的属性以及用于跟踪热状态变化的可选回调函数
+             *
+             * @param previousStatus @zh 之前的热状态 @en The previous thermal status
+             * @param newStatus @zh 更改后的新热状态 @en The new thermal status after the change
+             * @param statusMin @zh 热状态的最小阈值 @en The minimum threshold for thermal status
+             * @param statusMax @zh 热状态的最大阈值 @en The maximum threshold for thermal status
+             * @returns
+             */
+            onThermalStatusChanged?: (previousStatus: number, newStatus: number, statusMin: number, statusMax: number) => void;
+        } | undefined;
     }
     export namespace rendering {
         export function getUpdateFrequencyName(e: UpdateFrequency): string;
@@ -35253,6 +35400,7 @@ declare module "cc" {
             DRAW_NON_INSTANCING = 4096,
             REFLECTION_PROBE = 8192,
             GPU_DRIVEN = 16384,
+            NON_BUILTIN = 32768,
             ALL = 4294967295
         }
         export enum LightingMode {
@@ -35276,8 +35424,10 @@ declare module "cc" {
             INT_TYPE = 2
         }
         export class LightInfo {
-            constructor(light?: renderer.scene.Light | null, level?: number, culledByLight?: boolean);
+            constructor(light?: renderer.scene.Light | null, level?: number, culledByLight?: boolean, probe?: renderer.scene.ReflectionProbe | null);
+            reset(light?: renderer.scene.Light | null, level?: number, culledByLight?: boolean, probe?: renderer.scene.ReflectionProbe | null): void;
             light: renderer.scene.Light | null;
+            probe: renderer.scene.ReflectionProbe | null;
             level: number;
             culledByLight: boolean;
         }
@@ -35294,16 +35444,19 @@ declare module "cc" {
         }
         export class Descriptor {
             constructor(type?: gfx.Type);
+            reset(type?: gfx.Type): void;
             type: gfx.Type;
             count: number;
         }
         export class DescriptorBlock {
+            reset(): void;
             readonly descriptors: Map<string, Descriptor>;
             readonly uniformBlocks: Map<string, gfx.UniformBlock>;
             capacity: number;
             count: number;
         }
         export class DescriptorBlockFlattened {
+            reset(): void;
             readonly descriptorNames: string[];
             readonly uniformBlockNames: string[];
             readonly descriptors: Descriptor[];
@@ -35326,6 +35479,7 @@ declare module "cc" {
         }
         export class ResolvePair {
             constructor(source?: string, target?: string, resolveFlags?: ResolveFlags, mode?: gfx.ResolveMode, mode1?: gfx.ResolveMode);
+            reset(source?: string, target?: string, resolveFlags?: ResolveFlags, mode?: gfx.ResolveMode, mode1?: gfx.ResolveMode): void;
             source: string;
             target: string;
             resolveFlags: ResolveFlags;
@@ -35334,6 +35488,7 @@ declare module "cc" {
         }
         export class CopyPair {
             constructor(source?: string, target?: string, mipLevels?: number, numSlices?: number, sourceMostDetailedMip?: number, sourceFirstSlice?: number, sourcePlaneSlice?: number, targetMostDetailedMip?: number, targetFirstSlice?: number, targetPlaneSlice?: number);
+            reset(source?: string, target?: string, mipLevels?: number, numSlices?: number, sourceMostDetailedMip?: number, sourceFirstSlice?: number, sourcePlaneSlice?: number, targetMostDetailedMip?: number, targetFirstSlice?: number, targetPlaneSlice?: number): void;
             source: string;
             target: string;
             mipLevels: number;
@@ -35347,6 +35502,7 @@ declare module "cc" {
         }
         export class UploadPair {
             constructor(source?: Uint8Array, target?: string, mipLevels?: number, numSlices?: number, targetMostDetailedMip?: number, targetFirstSlice?: number, targetPlaneSlice?: number);
+            reset(target?: string, mipLevels?: number, numSlices?: number, targetMostDetailedMip?: number, targetFirstSlice?: number, targetPlaneSlice?: number): void;
             readonly source: Uint8Array;
             target: string;
             mipLevels: number;
@@ -35357,6 +35513,7 @@ declare module "cc" {
         }
         export class MovePair {
             constructor(source?: string, target?: string, mipLevels?: number, numSlices?: number, targetMostDetailedMip?: number, targetFirstSlice?: number, targetPlaneSlice?: number);
+            reset(source?: string, target?: string, mipLevels?: number, numSlices?: number, targetMostDetailedMip?: number, targetFirstSlice?: number, targetPlaneSlice?: number): void;
             source: string;
             target: string;
             mipLevels: number;
@@ -35366,6 +35523,7 @@ declare module "cc" {
             targetPlaneSlice: number;
         }
         export class PipelineStatistics {
+            reset(): void;
             numRenderPasses: number;
             numManagedTextures: number;
             totalManagedTextures: number;
@@ -35377,6 +35535,33 @@ declare module "cc" {
             numFreeDescriptorSets: number;
             numInstancingBuffers: number;
             numInstancingUniformBlocks: number;
+        }
+        export class RenderCommonObjectPoolSettings {
+            constructor(batchSize: number);
+            lightInfoBatchSize: number;
+            descriptorBatchSize: number;
+            descriptorBlockBatchSize: number;
+            descriptorBlockFlattenedBatchSize: number;
+            descriptorBlockIndexBatchSize: number;
+            resolvePairBatchSize: number;
+            copyPairBatchSize: number;
+            uploadPairBatchSize: number;
+            movePairBatchSize: number;
+            pipelineStatisticsBatchSize: number;
+        }
+        export class RenderCommonObjectPool {
+            constructor(settings: RenderCommonObjectPoolSettings);
+            reset(): void;
+            createLightInfo(light?: renderer.scene.Light | null, level?: number, culledByLight?: boolean, probe?: renderer.scene.ReflectionProbe | null): LightInfo;
+            createDescriptor(type?: gfx.Type): Descriptor;
+            createDescriptorBlock(): DescriptorBlock;
+            createDescriptorBlockFlattened(): DescriptorBlockFlattened;
+            createDescriptorBlockIndex(updateFrequency?: UpdateFrequency, parameterType?: ParameterType, descriptorType?: DescriptorTypeOrder, visibility?: gfx.ShaderStageFlagBit): DescriptorBlockIndex;
+            createResolvePair(source?: string, target?: string, resolveFlags?: ResolveFlags, mode?: gfx.ResolveMode, mode1?: gfx.ResolveMode): ResolvePair;
+            createCopyPair(source?: string, target?: string, mipLevels?: number, numSlices?: number, sourceMostDetailedMip?: number, sourceFirstSlice?: number, sourcePlaneSlice?: number, targetMostDetailedMip?: number, targetFirstSlice?: number, targetPlaneSlice?: number): CopyPair;
+            createUploadPair(target?: string, mipLevels?: number, numSlices?: number, targetMostDetailedMip?: number, targetFirstSlice?: number, targetPlaneSlice?: number): UploadPair;
+            createMovePair(source?: string, target?: string, mipLevels?: number, numSlices?: number, targetMostDetailedMip?: number, targetFirstSlice?: number, targetPlaneSlice?: number): MovePair;
+            createPipelineStatistics(): PipelineStatistics;
         }
         /****************************************************************************
          Copyright (c) 2021-2023 Xiamen Yaji Software Co., Ltd.
@@ -35612,15 +35797,104 @@ declare module "cc" {
              * @param name @en descriptor name in shader. @zh 填写着色器中的描述符(descriptor)名字
              */
             setSampler(name: string, sampler: gfx.Sampler): void;
+            /**
+             * @en Set builtin camera constants of CCCamera, such as cc_matView.
+             * For list of constants, please check CCCamera in cc-global.chunk.
+             * @zh 设置内置相机常量，例如cc_matView。
+             * 具体常量见cc-global.chunk中的CCCamera.
+             * @param camera @en The camera instance to be set. @zh 当前相机
+             */
             setBuiltinCameraConstants(camera: renderer.scene.Camera): void;
+            /**
+             * @deprecated Method will be removed in 3.9.0
+             * @en Same as setBuiltinDirectionalLightConstants
+             * @zh 同setBuiltinDirectionalLightConstants
+             * @param light @en The main light. @zh 主光
+             */
             setBuiltinShadowMapConstants(light: renderer.scene.DirectionalLight): void;
+            /**
+             * @en Set builtin directional light and shadow constants.
+             * For list of constants, please check CCShadow in cc-shadow.chunk and CCCamera in cc-global.chunk.
+             * @zh 设置内置方向光与阴影常量。
+             * 具体常量见cc-shadow.chunk中的CCShadow与cc-global.chunk中的CCCamera。
+             * @param light @en The main light. @zh 主光
+             * @param camera @en The camera instance to be set. @zh 当前相机
+             */
             setBuiltinDirectionalLightConstants(light: renderer.scene.DirectionalLight, camera: renderer.scene.Camera): void;
+            /**
+             * @en Set builtin sphere light and shadow constants.
+             * For list of constants, please check CCShadow in cc-shadow.chunk and CCForwardLight in cc-forward-light.chunk.
+             * @zh 设置内置球形光与阴影常量。
+             * 具体常量见cc-shadow.chunk中的CCShadow与cc-forward-light.chunk中的CCForwardLight。
+             * @param light @en The sphere light. @zh 球形光源
+             * @param camera @en The camera instance to be set. @zh 当前相机
+             */
             setBuiltinSphereLightConstants(light: renderer.scene.SphereLight, camera: renderer.scene.Camera): void;
+            /**
+             * @en Set builtin spot light and shadow constants.
+             * For list of constants, please check CCShadow in cc-shadow.chunk and CCForwardLight in cc-forward-light.chunk.
+             * @zh 设置内置探照光与阴影常量。
+             * 具体常量见cc-shadow.chunk中的CCShadow与cc-forward-light.chunk中的CCForwardLight。
+             * @param light @en The spot light. @zh 探照光源
+             * @param camera @en The camera instance to be set. @zh 当前相机
+             */
             setBuiltinSpotLightConstants(light: renderer.scene.SpotLight, camera: renderer.scene.Camera): void;
+            /**
+             * @en Set builtin point light and shadow constants.
+             * For list of constants, please check CCShadow in cc-shadow.chunk and CCForwardLight in cc-forward-light.chunk.
+             * @zh 设置内置点光与阴影常量。
+             * 具体常量见cc-shadow.chunk中的CCShadow与cc-forward-light.chunk中的CCForwardLight。
+             * @param light @en The point light. @zh 点光源
+             * @param camera @en The camera instance to be set. @zh 当前相机
+             */
             setBuiltinPointLightConstants(light: renderer.scene.PointLight, camera: renderer.scene.Camera): void;
+            /**
+             * @en Set builtin ranged directional light and shadow constants.
+             * For list of constants, please check CCShadow in cc-shadow.chunk and CCForwardLight in cc-forward-light.chunk.
+             * @zh 设置内置区间平行光与阴影常量。
+             * 具体常量见cc-shadow.chunk中的CCShadow与cc-forward-light.chunk中的CCForwardLight。
+             * @param light @en The ranged directional light. @zh 区间平行光源
+             * @param camera @en The camera instance to be set. @zh 当前相机
+             */
             setBuiltinRangedDirectionalLightConstants(light: renderer.scene.RangedDirectionalLight, camera: renderer.scene.Camera): void;
-            setBuiltinDirectionalLightViewConstants(light: renderer.scene.DirectionalLight, level?: number): void;
-            setBuiltinSpotLightViewConstants(light: renderer.scene.SpotLight): void;
+            /**
+             * @en Set builtin directional light frustum and shadow constants.
+             * These constants are used in builtin shadow map, cascaded shadow map and planar shadow.
+             * For list of constants, please check CCShadow in cc-shadow.chunk and CCCSM in cc-csm.chunk.
+             * @zh 设置内置平行光视锥与阴影常量。
+             * 这些常量用于内置的阴影、级联阴影与平面阴影。
+             * 具体常量见cc-shadow.chunk中的CCShadow与cc-csm.chunk中的CCCSM。
+             * @param light @en The directional light. @zh 平行光源
+             * @param camera @en The camera instance to be set. @zh 当前相机
+             * @param csmLevel @en Curent level of cascaded shadow map @zh 级联阴影等级
+             */
+            setBuiltinDirectionalLightFrustumConstants(camera: renderer.scene.Camera, light: renderer.scene.DirectionalLight, csmLevel?: number): void;
+            /**
+             * @en Set builtin spot light frustum and shadow constants.
+             * These constants are used in builtin shadow map.
+             * For list of constants, please check CCShadow in cc-shadow.chunk.
+             * @zh 设置内置探照光视锥与阴影常量。
+             * 这些常量用于内置的阴影。
+             * 具体常量见cc-shadow.chunk中的CCShadow。
+             * @param light @en The spot light. @zh 探照光源
+             */
+            setBuiltinSpotLightFrustumConstants(light: renderer.scene.SpotLight): void;
+        }
+        /**
+         * @en Scene
+         * A scene is an abstraction of content for rendering.
+         * @zh 场景。需要绘制的场景内容。
+         */
+        export interface SceneBuilder extends Setter {
+            /**
+             * @en Use the frustum information of light instead of camera.
+             * Often used in building shadow map.
+             * @zh 使用光源视锥进行投影，而不是用相机。常用于shadow map的生成。
+             * @param light @en The light used for projection @zh 用于投影的光源
+             * @param csmLevel @en Curent level of cascaded shadow map @zh 级联阴影等级
+             * @param optCamera @en Additional scene culling camera. @zh 额外的场景裁切相机
+             */
+            useLightFrustum(light: renderer.scene.Light, csmLevel?: number, optCamera?: renderer.scene.Camera): void;
         }
         /**
          * @en Render queue
@@ -35640,9 +35914,17 @@ declare module "cc" {
              * @param sceneFlags @en Rendering flags of the scene @zh 场景渲染标志位
              */
             addSceneOfCamera(camera: renderer.scene.Camera, light: LightInfo, sceneFlags?: SceneFlags): void;
-            addScene(camera: renderer.scene.Camera, sceneFlags: SceneFlags, light?: renderer.scene.Light | null): void;
-            addSceneCulledByDirectionalLight(camera: renderer.scene.Camera, sceneFlags: SceneFlags, light: renderer.scene.DirectionalLight, level: number): void;
-            addSceneCulledBySpotLight(camera: renderer.scene.Camera, sceneFlags: SceneFlags, light: renderer.scene.SpotLight): void;
+            /**
+             * @en Add the scene to be rendered.
+             * If SceneFlags.NON_BUILTIN is specified, no builtin constants will be set.
+             * Otherwise, related builtin constants will be set automatically.
+             * @zh 添加需要绘制的场景。
+             * 如果设置了SceneFlags.NON_BUILTIN，那么不会自动设置内置常量。
+             * @param camera @en Camera used for projection @zh 用于投影的相机
+             * @param sceneFlags @en Rendering flags of the scene @zh 场景渲染标志位
+             * @param light @en Light used for lighting computation @zh 用于光照的光源
+             */
+            addScene(camera: renderer.scene.Camera, sceneFlags: SceneFlags, light?: renderer.scene.Light): SceneBuilder;
             /**
              * @en Render a full-screen quad.
              * @zh 渲染全屏四边形
@@ -35714,7 +35996,7 @@ declare module "cc" {
              * @param sampler @en the sampler to use @zh 采样器名字
              * @param plane @en the image plane ID to sample (color|depth|stencil|video) @zh 需要采样的贴图平面(颜色|深度|模板|视频)
              */
-            addTexture(name: string, slotName: string, sampler?: gfx.Sampler | null, plane?: number): void;
+            addTexture(name: string, slotName: string, sampler?: gfx.Sampler, plane?: number): void;
             /**
              * @en Add render queue.
              * Every render queue has a hint type, such as NONE, OPAQUE, MASK or BLEND.
@@ -35757,8 +36039,27 @@ declare module "cc" {
              */
             showStatistics: boolean;
         }
+        /**
+         * @en Basic multisample render pass builder
+         * Support resolve render targets and depth stencil.
+         * This render pass only contains one render subpass.
+         * If resolve targets are specified, they will be resolved at the end of the render pass.
+         * After resolving, the contents of multisample render targets and depth stencils are unspecified.
+         * @zh 基础的多重采样渲染通道。支持决算(Resolve)渲染目标与深度缓冲。
+         * 此渲染通道只包含一个渲染子通道。
+         * 如果添加了决算对象，那么在渲染通道结束时，会进行决算。
+         * 决算后多重采样渲染目标与深度缓冲的内容是未定义的。
+         */
         export interface BasicMultisampleRenderPassBuilder extends BasicRenderPassBuilder {
+            /**
+             * @en Set resolve render target
+             * @zh 设置决算渲染目标
+             */
             resolveRenderTarget(source: string, target: string): void;
+            /**
+             * @en Set resolve depth stencil
+             * @zh 设置决算深度模板缓冲
+             */
             resolveDepthStencil(source: string, target: string, depthMode?: gfx.ResolveMode, stencilMode?: gfx.ResolveMode): void;
         }
         /**
@@ -35766,16 +36067,23 @@ declare module "cc" {
          * Basic pipeline provides basic rendering features which are supported on all platforms.
          * User can register resources which will be used in the render graph.
          * Theses resources are generally read and write, and will be managed by the pipeline.
+         * The residency information of resource should not be changed after registration.
          * In each frame, user can create a render graph to be executed by the pipeline.
          * @zh 基础渲染管线。
          * 基础渲染管线提供基础的渲染能力，能在全平台使用。
          * 用户可以在渲染管线中注册资源，这些资源将由管线托管，用于render graph。
          * 这些资源一般是可读写的资源。
+         * 资源在注册后，不能更改驻留属性。
          * 用户可以每帧构建一个render graph，然后交由管线执行。
          */
         export interface BasicPipeline extends __private._cocos_rendering_custom_pipeline__PipelineRuntime {
             readonly type: PipelineType;
             readonly capabilities: PipelineCapabilities;
+            /**
+             * @en Enable cpu culling of objects affected by the light. Enabled by default.
+             * @zh 光照计算时，裁切受光源影响的物件。默认开启。
+             */
+            enableCpuLightCulling: boolean;
             /**
              * @en Check whether the resource has been registered in the pipeline.
              * @zh 检查资源是否在管线中已注册
@@ -35784,8 +36092,8 @@ declare module "cc" {
              */
             containsResource(name: string): boolean;
             /**
-             * @en Add render window to the pipeline.
-             * @zh 注册渲染窗口(RenderWindow)
+             * @en Add or update render window to the pipeline.
+             * @zh 注册或更新渲染窗口(RenderWindow)
              * @param name @en Resource name @zh 资源名字
              * @param format @en Expected format of the render window @zh 期望的渲染窗口格式
              * @param width @en Expected width of the render window @zh 期望的渲染窗口宽度
@@ -35795,6 +36103,7 @@ declare module "cc" {
              */
             addRenderWindow(name: string, format: gfx.Format, width: number, height: number, renderWindow: __private._cocos_render_scene_core_render_window__RenderWindow): number;
             /**
+             * @deprecated Method will be removed in 3.9.0
              * @en Update render window information.
              * When render window information is updated, such as resized, user should notify the pipeline.
              * @zh 更新渲染窗口信息。当渲染窗口发生更新时，用户应通知管线。
@@ -35802,8 +36111,8 @@ declare module "cc" {
              */
             updateRenderWindow(name: string, renderWindow: __private._cocos_render_scene_core_render_window__RenderWindow): void;
             /**
-             * @en Add 2D render target.
-             * @zh 添加2D渲染目标
+             * @en Add or update 2D render target.
+             * @zh 添加或更新2D渲染目标
              * @param name @en Resource name @zh 资源名字
              * @param format @en Format of the resource @zh 资源的格式
              * @param width @en Width of the resource @zh 资源的宽度
@@ -35813,8 +36122,8 @@ declare module "cc" {
              */
             addRenderTarget(name: string, format: gfx.Format, width: number, height: number, residency?: ResourceResidency): number;
             /**
-             * @en Add 2D depth stencil.
-             * @zh 添加2D深度模板缓冲
+             * @en Add or update 2D depth stencil.
+             * @zh 添加或更新2D深度模板缓冲
              * @param name @en Resource name @zh 资源名字
              * @param format @en Format of the resource @zh 资源的格式
              * @param width @en Width of the resource @zh 资源的宽度
@@ -35824,6 +36133,7 @@ declare module "cc" {
              */
             addDepthStencil(name: string, format: gfx.Format, width: number, height: number, residency?: ResourceResidency): number;
             /**
+             * @deprecated Method will be removed in 3.9.0
              * @en Update render target information.
              * @zh 更新渲染目标的信息
              * @param name @en Resource name @zh 资源名字
@@ -35833,6 +36143,7 @@ declare module "cc" {
              */
             updateRenderTarget(name: string, width: number, height: number, format?: gfx.Format): void;
             /**
+             * @deprecated Method will be removed in 3.9.0
              * @en Update depth stencil information.
              * @zh 更新深度模板缓冲的信息
              * @param name @en Resource name @zh 资源名字
@@ -35841,13 +36152,103 @@ declare module "cc" {
              * @param format @en Format of the resource @zh 资源的格式
              */
             updateDepthStencil(name: string, width: number, height: number, format?: gfx.Format): void;
+            /**
+             * @en Add or update buffer.
+             * @zh 添加或更新缓冲
+             * @param name @en Resource name @zh 资源名字
+             * @param size @en Size of the resource in bytes @zh 资源的大小
+             * @param flags @en Flags of the resource @zh 资源的标志位
+             * @param residency @en Residency of the resource. @zh 资源的驻留性
+             * @returns Resource ID
+             */
             addBuffer(name: string, size: number, flags: ResourceFlags, residency: ResourceResidency): number;
+            /**
+             * @deprecated Method will be removed in 3.9.0
+             * @en Update buffer information.
+             * @zh 更新缓冲的信息
+             * @param name @en Resource name @zh 资源名字
+             * @param size @en Size of the resource in bytes @zh 资源的大小
+             */
             updateBuffer(name: string, size: number): void;
+            /**
+             * @en Add or update external texture.
+             * Must be readonly.
+             * @zh 添加或更新外部的贴图。贴图必须是只读的。
+             * @param name @en Resource name @zh 资源名字
+             * @param texture @en External unmanaged texture @zh 外部不受管理的贴图
+             * @param flags @en Flags of the resource @zh 资源的标志位
+             * @returns Resource ID
+             */
             addExternalTexture(name: string, texture: gfx.Texture, flags: ResourceFlags): number;
+            /**
+             * @deprecated Method will be removed in 3.9.0
+             * @en Update external texture information.
+             * @zh 更新外部的贴图信息
+             * @param name @en Resource name @zh 资源名字
+             * @param texture @en External unmanaged texture @zh 外部不受管理的贴图
+             */
             updateExternalTexture(name: string, texture: gfx.Texture): void;
-            addTexture(name: string, textureType: gfx.TextureType, format: gfx.Format, width: number, height: number, depth: number, arraySize: number, mipLevels: number, sampleCount: gfx.SampleCount, flags: ResourceFlags, residency: ResourceResidency): number;
+            /**
+             * @en Add or update texture.
+             * @zh 添加或更新外部的贴图。
+             * @param name @en Resource name @zh 资源名字
+             * @param type @en Type of the texture @zh 贴图的类型
+             * @param format @en Format of the texture @zh 贴图的格式
+             * @param width @en Width of the resource @zh 资源的宽度
+             * @param height @en Height of the resource @zh 资源的高度
+             * @param depth @en Depth of the resource @zh 资源的深度
+             * @param arraySize @en Size of the array @zh 资源数组的大小
+             * @param mipLevels @en Mip levels of the texture @zh 贴图的Mipmap数目
+             * @param sampleCount @en Sample count of the texture @zh 贴图的采样数目
+             * @param flags @en Flags of the resource @zh 资源的标志位
+             * @param residency @en Residency of the resource. @zh 资源的驻留性
+             * @returns Resource ID
+             */
+            addTexture(name: string, type: gfx.TextureType, format: gfx.Format, width: number, height: number, depth: number, arraySize: number, mipLevels: number, sampleCount: gfx.SampleCount, flags: ResourceFlags, residency: ResourceResidency): number;
+            /**
+             * @deprecated Method will be removed in 3.9.0
+             * @en Update texture information.
+             * @zh 更新贴图信息
+             * @param name @en Resource name @zh 资源名字
+             * @param format @en Format of the texture @zh 贴图的格式
+             * @param width @en Width of the resource @zh 资源的宽度
+             * @param height @en Height of the resource @zh 资源的高度
+             * @param depth @en Depth of the resource @zh 资源的深度
+             * @param arraySize @en Size of the array @zh 资源数组的大小
+             * @param mipLevels @en Mip levels of the texture @zh 贴图的Mipmap数目
+             * @param sampleCount @en Sample count of the texture @zh 贴图的采样数目
+             */
             updateTexture(name: string, format: gfx.Format, width: number, height: number, depth: number, arraySize: number, mipLevels: number, sampleCount: gfx.SampleCount): void;
+            /**
+             * @en Add or update resource.
+             * @zh 添加或更新资源
+             * @param name @en Resource name @zh 资源名字
+             * @param dimension @en Dimension of the resource @zh 资源的维度
+             * @param format @en Format of the texture @zh 资源的格式
+             * @param width @en Width of the resource @zh 资源的宽度
+             * @param height @en Height of the resource @zh 资源的高度
+             * @param depth @en Depth of the resource @zh 资源的深度
+             * @param arraySize @en Size of the array @zh 资源数组的大小
+             * @param mipLevels @en Mip levels of the texture @zh 资源的Mipmap数目
+             * @param sampleCount @en Sample count of the texture @zh 资源的采样数目
+             * @param flags @en Flags of the resource @zh 资源的标志位
+             * @param residency @en Residency of the resource. @zh 资源的驻留性
+             * @returns Resource ID
+             */
             addResource(name: string, dimension: ResourceDimension, format: gfx.Format, width: number, height: number, depth: number, arraySize: number, mipLevels: number, sampleCount: gfx.SampleCount, flags: ResourceFlags, residency: ResourceResidency): number;
+            /**
+             * @deprecated Method will be removed in 3.9.0
+             * @en Update resource information.
+             * @zh 更新资源信息
+             * @param name @en Resource name @zh 资源名字
+             * @param format @en Format of the texture @zh 资源的格式
+             * @param width @en Width of the resource @zh 资源的宽度
+             * @param height @en Height of the resource @zh 资源的高度
+             * @param depth @en Depth of the resource @zh 资源的深度
+             * @param arraySize @en Size of the array @zh 资源数组的大小
+             * @param mipLevels @en Mip levels of the texture @zh 资源的Mipmap数目
+             * @param sampleCount @en Sample count of the texture @zh 资源的采样数目
+             */
             updateResource(name: string, format: gfx.Format, width: number, height: number, depth: number, arraySize: number, mipLevels: number, sampleCount: gfx.SampleCount): void;
             /**
              * @en Add render pass
@@ -35895,6 +36296,12 @@ declare module "cc" {
              * @param copyPairs @en Array of copy source and target @zh 拷贝来源与目标的数组
              */
             addCopyPass(copyPairs: CopyPair[]): void;
+            /**
+             * @en Builtin reflection probe pass
+             * @zh 添加内置环境光反射通道
+             * @param camera @en Capturing camera @zh 用于捕捉的相机
+             */
+            addBuiltinReflectionProbePass(camera: renderer.scene.Camera): void;
         }
         /**
          * @beta Feature is under development
@@ -35938,7 +36345,7 @@ declare module "cc" {
              * @param sampler @en the sampler to use @zh 采样器名字
              * @param plane @en the image plane ID to sample (color|depth|stencil|video) @zh 需要采样的贴图平面(颜色|深度|模板|视频)
              */
-            addTexture(name: string, slotName: string, sampler?: gfx.Sampler | null, plane?: number): void;
+            addTexture(name: string, slotName: string, sampler?: gfx.Sampler, plane?: number): void;
             /**
              * @en Add storage buffer.
              * The buffer must have registered in pipeline.
@@ -36060,7 +36467,7 @@ declare module "cc" {
              * @param sampler @en the sampler to use @zh 采样器名字
              * @param plane @en the image plane ID to sample (color|depth|stencil|video) @zh 需要采样的贴图平面(颜色|深度|模板|视频)
              */
-            addTexture(name: string, slotName: string, sampler?: gfx.Sampler | null, plane?: number): void;
+            addTexture(name: string, slotName: string, sampler?: gfx.Sampler, plane?: number): void;
             /**
              * @en Add storage buffer.
              * The buffer must have registered in pipeline.
@@ -36170,8 +36577,26 @@ declare module "cc" {
              */
             setCustomShaderStages(name: string, stageFlags: gfx.ShaderStageFlagBit): void;
         }
+        /**
+         * @en Multisample render pass builder
+         * @zh 多重采样渲染通道。
+         */
         export interface MultisampleRenderPassBuilder extends BasicMultisampleRenderPassBuilder {
+            /**
+             * @en Add storage buffer
+             * @zh 添加存储缓冲
+             * @param name @en Name of the storage buffer @zh 存储缓冲的名字
+             * @param accessType @en Access type of the buffer in the render pass @zh 渲染通道中缓冲的读写状态
+             * @param slotName @en name of the descriptor in shader @zh 着色器中描述符的名字
+             */
             addStorageBuffer(name: string, accessType: AccessType, slotName: string): void;
+            /**
+             * @en Add storage image
+             * @zh 添加存储贴图
+             * @param name @en Name of the storage texture @zh 存储贴图的名字
+             * @param accessType @en Access type of the texture in the render pass @zh 渲染通道中贴图的读写状态
+             * @param slotName @en name of the descriptor in shader @zh 着色器中描述符的名字
+             */
             addStorageImage(name: string, accessType: AccessType, slotName: string): void;
         }
         /**
@@ -36188,7 +36613,7 @@ declare module "cc" {
              * @param sampler @en the sampler to use @zh 采样器名字
              * @param plane @en the image plane ID to sample (color|depth|stencil|video) @zh 需要采样的贴图平面(颜色|深度|模板|视频)
              */
-            addTexture(name: string, slotName: string, sampler?: gfx.Sampler | null, plane?: number): void;
+            addTexture(name: string, slotName: string, sampler?: gfx.Sampler, plane?: number): void;
             /**
              * @en Add storage buffer.
              * The buffer must have registered in pipeline.
@@ -36248,17 +36673,17 @@ declare module "cc" {
          */
         export interface Pipeline extends BasicPipeline {
             /**
-             * @en Add storage buffer.
-             * @zh 添加存储缓冲
+             * @en Add or update storage buffer.
+             * @zh 添加或更新存储缓冲
              * @param name @en Resource name @zh 资源名字
              * @param format @en Format of the resource @zh 资源的格式
-             * @param size @en Size of the resource @zh 资源的大小
+             * @param size @en Size of the resource in bytes @zh 资源的大小
              * @param residency @en Residency of the resource. @zh 资源的驻留性
              */
             addStorageBuffer(name: string, format: gfx.Format, size: number, residency?: ResourceResidency): number;
             /**
-             * @en Add 2D storage texture
-             * @zh 添加2D存储贴图
+             * @en Add or update 2D storage texture
+             * @zh 添加或更新2D存储贴图
              * @param name @en Resource name @zh 资源名字
              * @param format @en Format of the resource @zh 资源的格式
              * @param width @en Width of the resource @zh 资源的宽度
@@ -36268,8 +36693,8 @@ declare module "cc" {
             addStorageTexture(name: string, format: gfx.Format, width: number, height: number, residency?: ResourceResidency): number;
             /**
              * @experimental
-             * @en Add 2D shading rate texture
-             * @zh 添加2D着色率贴图
+             * @en Add or update 2D shading rate texture
+             * @zh 添加或更新2D着色率贴图
              * @param name @en Resource name @zh 资源名字
              * @param width @en Width of the resource @zh 资源的宽度
              * @param height @en Height of the resource @zh 资源的高度
@@ -36280,7 +36705,7 @@ declare module "cc" {
              * @en Update storage buffer information.
              * @zh 更新存储缓冲的信息
              * @param name @en Resource name @zh 资源名字
-             * @param size @en Size of the resource @zh 资源的大小
+             * @param size @en Size of the resource in bytes @zh 资源的大小
              * @param format @en Format of the resource @zh 资源的格式
              */
             updateStorageBuffer(name: string, size: number, format?: gfx.Format): void;
@@ -36310,6 +36735,16 @@ declare module "cc" {
              * @returns Render pass builder
              */
             addRenderPass(width: number, height: number, passName: string): RenderPassBuilder;
+            /**
+             * @en Add multisample render pass
+             * @zh 添加多重采样渲染通道
+             * @param width @en Width of the render pass @zh 渲染通道的宽度
+             * @param height @en Height of the render pass @zh 渲染通道的高度
+             * @param count @en Sample count @zh 采样数目
+             * @param quality @en Sample quality (default is 0) @zh 采样质量（默认为0）
+             * @param passName @en Pass name declared in the effect. Default value is 'default' @zh effect中的pass name，缺省为'default'
+             * @returns Multisample render pass builder
+             */
             addMultisampleRenderPass(width: number, height: number, count: number, quality: number, passName: string): MultisampleRenderPassBuilder;
             /**
              * @en Add compute pass
@@ -36360,8 +36795,6 @@ declare module "cc" {
              * @param movePairs @en Array of move source and target @zh 移动来源与目标的数组
              */
             addMovePass(movePairs: MovePair[]): void;
-            addBuiltinGpuCullingPass(camera: renderer.scene.Camera, hzbName?: string, light?: renderer.scene.Light | null): void;
-            addBuiltinHzbGenerationPass(sourceDepthStencilName: string, targetHzbName: string): void;
             /**
              * @experimental
              */
@@ -36387,6 +36820,10 @@ declare module "cc" {
              * @param pipeline @en Current render pipeline @zh 当前管线
              */
             setup(cameras: renderer.scene.Camera[], pipeline: BasicPipeline): void;
+            /**
+             * @en Callback of pipeline state changed
+             * @zh 渲染管线状态更新的回调
+             */
             onGlobalPipelineStateChanged?(): void;
         }
     }
@@ -36474,6 +36911,17 @@ declare module "cc" {
             set needBlur(value: boolean);
             get needBlur(): boolean;
         }
+        export class DOF extends PostProcessSetting {
+            protected _focusDistance: number;
+            protected _focusRange: number;
+            protected _bokehRadius: number;
+            set focusDistance(value: number);
+            get focusDistance(): number;
+            set focusRange(value: number);
+            get focusRange(): number;
+            set bokehRadius(value: number);
+            get bokehRadius(): number;
+        }
         export abstract class SettingPass extends BasePass {
             getSetting: typeof __private._cocos_rendering_post_process_passes_setting_pass__getSetting;
             get setting(): PostProcessSetting;
@@ -36482,7 +36930,7 @@ declare module "cc" {
         export function getRTFormatBeforeToneMapping(ppl: rendering.BasicPipeline): gfx.Format;
         export function forceEnableFloatOutput(ppl: __private._cocos_rendering_custom_pipeline__PipelineRuntime): boolean;
         export function disablePostProcessForDebugView(): boolean;
-        export function getShadowMapSampler(): gfx.Sampler | null;
+        export function getShadowMapSampler(): gfx.Sampler | undefined;
         export abstract class BasePass {
             abstract name: string;
             effectName: string;
@@ -36637,6 +37085,14 @@ declare module "cc" {
             outputNames: string[];
             effectName: string;
             enableInAllEditorCamera: boolean;
+            render(camera: renderer.scene.Camera, ppl: rendering.Pipeline): void;
+        }
+        export class DofPass extends SettingPass {
+            get setting(): DOF;
+            checkEnable(camera: renderer.scene.Camera): boolean;
+            name: string;
+            effectName: string;
+            outputNames: string[];
             render(camera: renderer.scene.Camera, ppl: rendering.Pipeline): void;
         }
         export class PostProcessBuilder implements rendering.PipelineBuilder {
@@ -45035,6 +45491,8 @@ declare module "cc" {
          */
         get rotation(): number;
         set rotation(val: number);
+        get technique(): number;
+        set technique(val: number);
         constructor();
         onLoad(): void;
         onEnable(): void;
@@ -46719,6 +47177,13 @@ declare module "cc" {
         protected onDisable(): void;
         protected start(): void;
         protected onDestroy(): void;
+        /**
+         * @en
+         * If the physics engine is box2d, need to call this function to apply current changes to joint, this will regenerate inner box2d joint.
+         * @zh
+         * 如果物理引擎是 box2d, 需要调用此函数来应用当前 joint 中的修改。
+         */
+        apply(): void;
     }
     export class DistanceJoint2D extends Joint2D {
         TYPE: EJoint2DType;
@@ -47501,6 +47966,27 @@ declare module "cc" {
             emitEvents(): void;
             /**
              * @en
+             * Get or set debug draw flags. Default is EPhysicsDrawFlags.NONE.
+             * Refer to EPhysicsDrawFlags.
+             * Note: Since physics debug draw uses Geometry-Renderer to do drawing,
+             * make sure Geometry-Renderer is not cropped in Project Setting.
+             * @zh
+             * 获取或设置调试绘制标志。默认为 EPhysicsDrawFlags.NONE。
+             * 参考 EPhysicsDrawFlags。
+             * 注意：因为物理调试绘制使用几何渲染器来绘制，请确保项目设置中几何渲染器没有被裁剪掉。
+             */
+            get debugDrawFlags(): number;
+            set debugDrawFlags(v: number);
+            /**
+             * @en
+             * Get or set constraint debug draw size. Default is 0.3.
+             * @zh
+             * 获取或设置约束的调试绘制尺寸。默认为 0.3。
+             */
+            get debugDrawConstraintSize(): number;
+            set debugDrawConstraintSize(v: number);
+            /**
+             * @en
              * Collision detect all collider, and record all the detected results, through PhysicsSystem.Instance.RaycastResults access to the results.
              * @zh
              * 检测所有的碰撞盒，并记录所有被检测到的结果，通过 PhysicsSystem.instance.raycastResults 访问结果。
@@ -47834,7 +48320,7 @@ declare module "cc" {
              * @param callback - The event callback, signature:`(event?:ICollisionEvent|ITriggerEvent)=>void`.
              * @param target - The event callback target.
              */
-            on<TFunction extends (...any: any[]) => void>(type: TriggerEventType | CollisionEventType | CharacterTriggerEventType, callback: TFunction, target?: any, once?: boolean): any;
+            on<TFunction extends __private._cocos_physics_framework_components_colliders_collider__Callback>(type: TriggerEventType | CollisionEventType | CharacterTriggerEventType, callback: TFunction, target?: any, once?: boolean): any;
             /**
              * @en
              * Unregisters callbacks associated with trigger or collision events that have been registered.
@@ -47844,7 +48330,7 @@ declare module "cc" {
              * @param callback - The event callback, signature:`(event?:ICollisionEvent|ITriggerEvent)=>void`.
              * @param target - The event callback target.
              */
-            off(type: TriggerEventType | CollisionEventType | CharacterTriggerEventType, callback?: (...any: any[]) => void, target?: any): void;
+            off(type: TriggerEventType | CollisionEventType | CharacterTriggerEventType, callback?: __private._cocos_physics_framework_components_colliders_collider__Callback, target?: any): void;
             /**
              * @en
              * Registers a callback associated with a trigger or collision event, which is automatically unregistered once executed.
@@ -47854,7 +48340,7 @@ declare module "cc" {
              * @param callback - The event callback, signature:`(event?:ICollisionEvent|ITriggerEvent)=>void`.
              * @param target - The event callback target.
              */
-            once<TFunction extends (...any: any[]) => void>(type: TriggerEventType | CollisionEventType | CharacterTriggerEventType, callback: TFunction, target?: any): any;
+            once<TFunction extends __private._cocos_physics_framework_components_colliders_collider__Callback>(type: TriggerEventType | CollisionEventType | CharacterTriggerEventType, callback: TFunction, target?: any): any;
             /**
              * @en
              * Removes all registered events of the specified target or type.
@@ -49112,7 +49598,7 @@ declare module "cc" {
              * @param callback - The event callback, signature:`(event?:ICollisionEvent|ITriggerEvent)=>void`.
              * @param target - The event callback target.
              */
-            on<TFunction extends (...any: any[]) => void>(type: CharacterTriggerEventType | CharacterCollisionEventType, callback: TFunction, target?: any, once?: boolean): any;
+            on<TFunction extends __private._cocos_physics_framework_components_character_controllers_character_controller__Callback>(type: CharacterTriggerEventType | CharacterCollisionEventType, callback: TFunction, target?: any, once?: boolean): any;
             /**
              * @en
              * Unregisters callbacks associated with trigger or collision events that have been registered.
@@ -49122,7 +49608,7 @@ declare module "cc" {
              * @param callback - The event callback, signature:`(event?:ICollisionEvent|ITriggerEvent)=>void`.
              * @param target - The event callback target.
              */
-            off(type: CharacterTriggerEventType | CharacterCollisionEventType, callback?: (...any: any[]) => void, target?: any): void;
+            off(type: CharacterTriggerEventType | CharacterCollisionEventType, callback?: __private._cocos_physics_framework_components_character_controllers_character_controller__Callback, target?: any): void;
             /**
              * @en
              * Registers a callback associated with a trigger or collision event, which is automatically unregistered once executed.
@@ -49132,7 +49618,7 @@ declare module "cc" {
              * @param callback - The event callback, signature:`(event?:ICollisionEvent|ITriggerEvent)=>void`.
              * @param target - The event callback target.
              */
-            once<TFunction extends (...any: any[]) => void>(type: CharacterTriggerEventType | CharacterCollisionEventType, callback: TFunction, target?: any): any;
+            once<TFunction extends __private._cocos_physics_framework_components_character_controllers_character_controller__Callback>(type: CharacterTriggerEventType | CharacterCollisionEventType, callback: TFunction, target?: any): any;
             /**
              * @en
              * Gets the group value.
@@ -49669,6 +50155,36 @@ declare module "cc" {
              * 默认分组。
              */
             DEFAULT = 1
+        }
+        export enum EPhysicsDrawFlags {
+            /**
+             * @en
+             * Draw nothing.
+             * @zh
+             * 不绘制。
+             */
+            NONE = 0,
+            /**
+             * @en
+             * Draw wireframe
+             * @zh
+             * 绘制线框。
+             */
+            WIRE_FRAME = 1,
+            /**
+             * @en
+             * Draw Constraint.
+             * @zh
+             * 绘制约束
+             */
+            CONSTRAINT = 2,
+            /**
+             * @en
+             * Draw AABB.
+             * @zh
+             * 绘制包围盒。
+             */
+            AABB = 4
         }
         export { ITriggerEvent, TriggerEventType, TriggerCallback, IContactEquation, ICollisionEvent, CollisionEventType, CollisionCallback, CharacterTriggerEventType, CharacterCollisionEventType, CharacterControllerContact };
     }
@@ -50374,6 +50890,19 @@ declare module "cc" {
          */
         /* eslint @typescript-eslint/no-explicit-any: "off" */
         export namespace spine {
+            export class String {
+                length: number;
+                isEmpty: boolean;
+                strPtr: number;
+                str: string;
+            }
+            export class SPVectorFloat {
+                size(): number;
+                resize(newSize: number, defaultValue: number);
+                set(index: number, value: number);
+                get(index: number): number;
+                delete();
+            }
             export class Animation {
                 constructor(name: string, timelines: Array<Timeline>, duration: number);
                 duration: number;
@@ -50889,7 +51418,6 @@ declare module "cc" {
                 transformConstraints: Array<TransformConstraint>;
                 pathConstraints: Array<PathConstraint>;
                 _updateCache: Updatable[];
-                updateCacheReset: Updatable[];
                 skin: Skin;
                 color: Color;
                 time: number;
@@ -51004,7 +51532,7 @@ declare module "cc" {
                 attachmentLoader: AttachmentLoader;
                 scale: number;
                 constructor(attachmentLoader: AttachmentLoader);
-                readSkeletonData(json: string | any): SkeletonData;
+                readSkeletonData(json: any): SkeletonData;
                 readAttachment(map: any, skin: Skin, slotIndex: number, name: string, skeletonData: SkeletonData): Attachment;
                 readVertices(map: any, attachment: VertexAttachment, verticesLength: number): void;
                 readAnimation(map: any, name: string, skeletonData: SkeletonData): void;
@@ -51462,7 +51990,19 @@ declare module "cc" {
                 transform(x: number, y: number): void;
                 end(): void;
             }
+            export class SkeletonSystem {
+                public static destroySpineInstance(instance: SkeletonInstance): void;
+                public static updateAnimation(deltaTime: number): void;
+                public static updateRenderData(): void;
+                public static getCount(): number;
+            }
             export class SkeletonInstance {
+                dtRate: number;
+                isCache: boolean;
+                isDelete: boolean;
+                enable: boolean;
+                setTrackEntryListener: any;
+                destroy();
                 initSkeleton(data: SkeletonData);
                 getAnimationState();
                 setAnimation(trackIndex: number, name: string, loop: boolean): spine.TrackEntry | null;
@@ -51491,7 +52031,7 @@ declare module "cc" {
                 static createSpineSkeletonDataWithBinary(byteSize: number, atlasText: string): SkeletonData;
                 static registerSpineSkeletonDataWithUUID(data: SkeletonData, uuid: string);
                 static destroySpineSkeletonDataWithUUID(uuid: string);
-                static destroySpineInstance(instance: SkeletonInstance);
+                static destroySpineSkeleton(skeleton: Skeleton): void;
                 static getCurrentListenerID(): number;
                 static getCurrentEventType(): EventType;
                 static getCurrentTrackEntry(): TrackEntry;
@@ -51597,6 +52137,12 @@ declare module "cc" {
              */
             PRIVATE_CACHE = 2
         }
+        export interface TempColor {
+            r: number;
+            g: number;
+            b: number;
+            a: number;
+        }
         /**
          * @en
          * The Sockets attached to bones, synchronous transform with spine animation.
@@ -51652,7 +52198,6 @@ declare module "cc" {
             protected _timeScale: number;
             protected _preCacheMode: AnimationCacheMode;
             protected _cacheMode: AnimationCacheMode;
-            protected _defaultCacheMode: AnimationCacheMode;
             protected _sockets: SpineSocket[];
             protected _useTint: boolean;
             protected _debugMesh: boolean;
@@ -51661,7 +52206,7 @@ declare module "cc" {
             protected _enableBatch: boolean;
             protected _runtimeData: spine.SkeletonData | null;
             _skeleton: spine.Skeleton;
-            protected _instance: spine.SkeletonInstance;
+            protected _instance: spine.SkeletonInstance | null;
             protected _state: spine.AnimationState;
             protected _textures: Texture2D[];
             protected _animationName: string;
@@ -51687,6 +52232,12 @@ declare module "cc" {
             protected _playTimes: number;
             protected _needUpdateSkeltonData: boolean;
             protected _listener: __private._cocos_spine_track_entry_listeners__TrackEntryListeners | null;
+            _vLength: number;
+            _vBuffer: Uint8Array | null;
+            _iLength: number;
+            _iBuffer: Uint8Array | null;
+            _model: any;
+            _tempColor: TempColor;
             constructor();
             /**
              * @en
@@ -51764,7 +52315,7 @@ declare module "cc" {
              */
             get debugMesh(): boolean;
             set debugMesh(value: boolean);
-            get socketNodes(): Map<number, Node>;
+            get socketNodes(): Map<number, Node> | null;
             /**
              * @en The name of current playing animation.
              * @zh 当前播放的动画名称。
@@ -51798,10 +52349,16 @@ declare module "cc" {
             onDisable(): void;
             onDestroy(): void;
             /**
-             * @en Clear animation and set to setup pose.
-             * @zh 清除动画并还原到初始姿势。
+             * @en Clear animation and set to setup pose, default value of track index is 0.
+             * @zh 清除指定动画并还原到初始姿势, 默认清除 track索引 为0的动画。
+             * @param {NUmber} [trackIndex] @en track index. @zh track 的索引。
              */
-            clearAnimation(): void;
+            clearAnimation(trackIndex?: number): void;
+            /**
+             * @en Clear all animations and set to setup pose.
+             * @zh 清除所有动画并还原到初始姿势。
+             */
+            clearAnimations(): void;
             protected _updateSkeletonData(): void;
             /**
              * @en
@@ -55244,6 +55801,7 @@ declare module "cc" {
         protected _isBouncing: boolean;
         protected _contentPos: math.Vec3;
         protected _deltaPos: math.Vec3;
+        protected _deltaAmount: math.Vec3;
         protected _hoverIn: __private._cocos_ui_scroll_view__XrhoverType;
         /**
          * @en
@@ -57537,6 +58095,7 @@ declare module "cc" {
     export import ERigidBodyType = physics.ERigidBodyType;
     export import EAxisDirection = physics.EAxisDirection;
     export import EColliderType = physics.EColliderType;
+    export import EPhysicsDrawFlags = physics.EPhysicsDrawFlags;
     export namespace __private {
         /**
          * Engine classes with this kind of signature are integrated with editor extendability.
@@ -61108,7 +61667,14 @@ declare module "cc" {
             /**
              * @en Get shading scale.
              * Shading scale affects shading texels per pixel.
+             * Currently it affects classic native forward pipeline and builtin custom pipeline.
+             * Users can change the size of the render targets according to the shading scale,
+             * when writing their own custom pipelines.
+             * To change screen size, please check director.root.resize.
              * @zh 获得渲染倍率(ShadingScale)，每像素(pixel)绘制的纹素(texel)会根据渲染倍率进行调整。
+             * 目前仅对原有原生Forward管线以及内置自定义管线生效。
+             * 用户编写自定义管线时，可以根据渲染倍率进行渲染目标尺寸大小的调整。
+             * 如果要修改屏幕大小，详见director.root.resize。
              */
             shadingScale: number;
             /**
@@ -61628,7 +62194,7 @@ declare module "cc" {
          * 第三个参数在 Babel 情况下，会传入 descriptor。对于一些被优化的引擎内部装饰器，会传入 initializer。
          */
         export type _cocos_core_data_decorators_utils__LegacyPropertyDecorator = (target: Record<string, any>, propertyKey: string | symbol, descriptorOrInitializer?: _cocos_core_data_decorators_utils__BabelPropertyDecoratorDescriptor | _cocos_core_data_decorators_utils__Initializer | null) => void;
-        export type _cocos_core_data_decorators_property__SimplePropertyType = Function | string | typeof CCString | typeof CCInteger | typeof CCFloat | typeof CCBoolean;
+        export type _cocos_core_data_decorators_property__SimplePropertyType = Function | string | typeof CCString | typeof CCInteger | typeof CCBoolean;
         export type _cocos_core_data_decorators_property__PropertyType = _cocos_core_data_decorators_property__SimplePropertyType | _cocos_core_data_decorators_property__SimplePropertyType[];
         export class _cocos_core_data_utils_attribute__PrimitiveType<T> {
             name: string;
@@ -63257,6 +63823,14 @@ declare module "cc" {
              * All remote bundles.
              */
             remoteBundles?: string[];
+            /**
+             * @en
+             * The maximum number of concurrent when downloading.
+             *
+             * @zh
+             * 下载时的最大并发数。
+             */
+            downloadMaxConcurrency?: number;
         }
         export type _pal_screen_adapter__ConfigOrientation = "auto" | "landscape" | "portrait";
         export type _cocos_serialization_deserialize__SharedString = string;
@@ -64516,7 +65090,7 @@ declare module "cc" {
             getLocalDescriptorSetLayout(device: gfx.Device, phaseID: number, programName: string): gfx.DescriptorSetLayout;
             getProgramInfo(phaseID: number, programName: string): renderer.IProgramInfo;
             getShaderInfo(phaseID: number, programName: string): gfx.ShaderInfo;
-            getProgramVariant(device: gfx.Device, phaseID: number, name: string, defines: renderer.MacroRecord, key?: string | null): _cocos_rendering_custom_private__ProgramProxy | null;
+            getProgramVariant(device: gfx.Device, phaseID: number, name: string, defines: renderer.MacroRecord, key?: string): _cocos_rendering_custom_private__ProgramProxy | null;
             getBlockSizes(phaseID: number, programName: string): number[];
             getHandleMap(phaseID: number, programName: string): Record<string, number>;
             getProgramID(phaseID: number, programName: string): number;
@@ -64552,12 +65126,17 @@ declare module "cc" {
             shadowPass: any;
             forwardPass: any;
             postProcess: postProcess.PostProcess | undefined;
+            maxSpotLights: number;
+            maxSphereLights: number;
+            maxPointLights: number;
+            maxRangedDirLights: number;
             setClearFlag(clearFlag: gfx.ClearFlagBit): _cocos_rendering_post_process_utils_pass_context__PassContext;
             setClearColor(x: number, y: number, z: number, w: number): _cocos_rendering_post_process_utils_pass_context__PassContext;
             setClearDepthColor(x: number, y: number, z: number, w: number): _cocos_rendering_post_process_utils_pass_context__PassContext;
             version(): _cocos_rendering_post_process_utils_pass_context__PassContext;
             clearBlack(): void;
             addRenderPass(layoutName: string, passName: string): _cocos_rendering_post_process_utils_pass_context__PassContext;
+            addSceneLights(queue: rendering.RenderQueueBuilder, camera: renderer.scene.Camera, flags?: rendering.SceneFlags): void;
             updateViewPort(): void;
             updatePassViewPort(shadingScale?: number, offsetScale?: number): _cocos_rendering_post_process_utils_pass_context__PassContext;
             addRasterView(name: string, format: gfx.Format, offscreen?: boolean, residency?: rendering.ResourceResidency): _cocos_rendering_post_process_utils_pass_context__PassContext;
@@ -66222,6 +66801,7 @@ declare module "cc" {
         export const _cocos_physics_2d_framework_components_colliders_collider_2d__Collider2D_base: new (...args: any[]) => Component & _cocos_core_event_eventify__IEventified;
         export interface _cocos_physics_2d_spec_i_physics_joint__IJoint2D extends _cocos_physics_spec_i_lifecycle__ILifecycle {
             readonly impl: any;
+            apply(): void;
             initialize(v: Joint2D): void;
         }
         export interface _cocos_physics_spec_i_physics_world__IRaycastOptions {
@@ -66232,6 +66812,8 @@ declare module "cc" {
         }
         export interface _cocos_physics_spec_i_physics_world__IPhysicsWorld {
             readonly impl: any;
+            debugDrawFlags: physics.EPhysicsDrawFlags;
+            debugDrawConstraintSize: number;
             setGravity: (v: math.IVec3Like) => void;
             setAllowSleep: (v: boolean) => void;
             setDefaultMaterial: (v: physics.PhysicsMaterial) => void;
@@ -66276,6 +66858,7 @@ declare module "cc" {
             getBoundingSphere: (v: geometry.Sphere) => void;
             updateEventListener: () => void;
         }
+        export type _cocos_physics_framework_components_colliders_collider__Callback = (...args: any[]) => any;
         export const _cocos_physics_framework_components_colliders_collider__Collider_base: new (...args: any[]) => Component & _cocos_core_event_eventify__IEventified;
         export interface _cocos_physics_spec_i_physics_shape__IBoxShape extends _cocos_physics_spec_i_physics_shape__IBaseShape {
             updateSize: () => void;
@@ -66528,6 +67111,7 @@ declare module "cc" {
             move(movement: math.IVec3Like, minDist: number, elapsedTime: number): void;
             syncPhysicsToScene(): void;
         }
+        export type _cocos_physics_framework_components_character_controllers_character_controller__Callback = (...args: any[]) => any;
         export const _cocos_physics_framework_components_character_controllers_character_controller__CharacterController_base: new (...args: any[]) => Component & _cocos_core_event_eventify__IEventified;
         export type _cocos_physics_framework_physics_selector__IPhysicsEngineId = "builtin" | "cannon.js" | "bullet" | "physx" | string;
         export interface _cocos_physics_spec_i_character_controller__IBoxCharacterController extends _cocos_physics_spec_i_character_controller__IBaseCharacterController {
@@ -66810,20 +67394,29 @@ declare module "cc" {
             indexOffset: number;
             indexCount: number;
         }
+        export class _cocos_spine_skeleton_cache__FrameBoneInfo {
+            a: number;
+            b: number;
+            c: number;
+            d: number;
+            worldX: number;
+            worldY: number;
+        }
         /**
          * @en Attach node tool
          * @zh 挂点工具类
          * @class sp.AttachUtil
          */
         export class _cocos_spine_attach_util__AttachUtil {
-            protected _inited: boolean;
-            protected _skeleton: sp.spine.Skeleton | null;
-            protected _skeletonNode: Node | null;
-            protected _skeletonComp: sp.Skeleton | null;
+            protected _isInitialized: boolean;
+            protected _skeletonBones: sp.spine.Bone[] | _cocos_spine_skeleton_cache__FrameBoneInfo[] | null;
+            protected _socketNodes: Map<number, Node> | null;
             constructor();
             init(skeletonComp: sp.Skeleton): void;
+            updateSkeletonBones(bones: _cocos_spine_skeleton_cache__FrameBoneInfo[]): void;
             reset(): void;
             _syncAttachedNode(): void;
+            matrixHandle(node: Node, bone: any): void;
         }
         export type _cocos_spine_track_entry_listeners__TrackListener = (x: sp.spine.TrackEntry) => void;
         export type _cocos_spine_track_entry_listeners__TrackListener2 = (x: sp.spine.TrackEntry, ev: sp.spine.Event) => void;
@@ -66835,8 +67428,9 @@ declare module "cc" {
             dispose?: ((entry: sp.spine.TrackEntry) => void);
             complete?: ((entry: sp.spine.TrackEntry) => void);
             event?: ((entry: sp.spine.TrackEntry, event: sp.spine.Event) => void);
-            static getListeners(entry: sp.spine.TrackEntry): sp.spine.AnimationStateListener;
+            static getListeners(entry: sp.spine.TrackEntry, instance: sp.spine.SkeletonInstance): sp.spine.AnimationStateListener;
             static emitListener(id: number, entry: sp.spine.TrackEntry, event: sp.spine.Event): void;
+            static emitTrackEntryListener(id: number, entry: sp.spine.TrackEntry, event: sp.spine.Event, eventType: sp.spine.EventType): void;
             static addListener(listener: _cocos_spine_track_entry_listeners__CommonTrackEntryListener): number;
         }
         export class _cocos_spine_skeleton_cache__SpineDrawItem {
@@ -66851,20 +67445,12 @@ declare module "cc" {
             iData: Uint16Array;
             meshes: _cocos_spine_skeleton_cache__SpineDrawItem[];
         }
-        export class _cocos_spine_skeleton_cache__FrameBoneInfo {
-            a: number;
-            b: number;
-            c: number;
-            d: number;
-            worldX: number;
-            worldY: number;
-        }
         export interface _cocos_spine_skeleton_cache__AnimationFrame {
             model: _cocos_spine_skeleton_cache__SpineModel;
             boneInfos: _cocos_spine_skeleton_cache__FrameBoneInfo[];
         }
         export class _cocos_spine_skeleton_cache__AnimationCache {
-            protected _instance: sp.spine.SkeletonInstance;
+            protected _instance: sp.spine.SkeletonInstance | null;
             protected _state: sp.spine.AnimationState;
             protected _skeletonData: sp.spine.SkeletonData;
             protected _skeleton: sp.spine.Skeleton;
@@ -66899,17 +67485,18 @@ declare module "cc" {
             invalidAllFrame(): void;
             enableCacheAttachedInfo(): void;
             clear(): void;
-            destory(): void;
+            destroy(): void;
         }
         export interface _cocos_spine_skeleton_cache__SkeletonCacheItemInfo {
-            skeleton: sp.spine.Skeleton;
-            clipper: sp.spine.SkeletonClipping;
-            state: sp.spine.AnimationState;
+            skeleton: sp.spine.Skeleton | null;
+            clipper: sp.spine.SkeletonClipping | null;
+            state: sp.spine.AnimationState | null;
             listener: _cocos_spine_track_entry_listeners__TrackEntryListeners;
             curAnimationCache: _cocos_spine_skeleton_cache__AnimationCache | null;
             animationsCache: {
                 [key: string]: _cocos_spine_skeleton_cache__AnimationCache;
             };
+            assetUUID: string;
         }
         export class _cocos_spine_skeleton_cache__SkeletonCache {
             static readonly FrameTime: number;
@@ -66925,8 +67512,9 @@ declare module "cc" {
             enablePrivateMode(): void;
             clear(): void;
             invalidAnimationCache(uuid: string): void;
-            removeSkeleton(uuid: string): void;
-            getSkeletonCache(uuid: string, skeletonData: sp.spine.SkeletonData): _cocos_spine_skeleton_cache__SkeletonCacheItemInfo;
+            destroySkeleton(assetUuid: string): void;
+            createSkeletonInfo(skeletonAsset: sp.SkeletonData): _cocos_spine_skeleton_cache__SkeletonCacheItemInfo;
+            getSkeletonInfo(skeletonAsset: sp.SkeletonData): null | _cocos_spine_skeleton_cache__SkeletonCacheItemInfo;
             getAnimationCache(uuid: string, animationName: string): null | _cocos_spine_skeleton_cache__AnimationCache;
             initAnimationCache(uuid: string, data: sp.SkeletonData, animationName: string): null | _cocos_spine_skeleton_cache__AnimationCache;
             destroyCachedAnimations(uuid?: string): void;
@@ -68545,6 +69133,14 @@ declare module "cc" {
          * 滚动视图事件类型。
          */
         export enum _cocos_ui_scroll_view__EventType {
+            /**
+             * @en
+             * It means an invalid event type or "default empty value" of EventType.
+             *
+             * @zh
+             * 代表无效事件, 或者EventType的默认空值。
+             */
+            NONE = "",
             /**
              * @en
              * The event emitted when ScrollView scroll to the top boundary of inner container.

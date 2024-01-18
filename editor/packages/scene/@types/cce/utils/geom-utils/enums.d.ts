@@ -2,6 +2,9 @@
  * 几何工具模块
  * @category geometry
  */
+/**
+ * 形状的类型值。
+ */
 declare const _default: {
     SHAPE_RAY: number;
     SHAPE_LINE: number;
@@ -14,8 +17,5 @@ declare const _default: {
     SHAPE_FRUSTUM_ACCURATE: number;
     SHAPE_CAPSULE: number;
 };
-/**
- * 形状的类型值。
- */
 export default _default;
 //# sourceMappingURL=enums.d.ts.map

@@ -22,5 +22,15 @@ export declare function generatePath(node: Node, comp: Component | null, propert
  * @param attrs 来自 cc.Class.attr(obj.constructor, key);
  */
 export declare function ccClassAttrPropertyDefaultValue(attrs: any): any;
-export * as default from './utils';
+declare const _default: {
+    getDefault: typeof getDefault;
+    getConstructor: typeof getConstructor;
+    getType: typeof getType;
+    getTypeName: typeof getTypeName;
+    getTypeInheritanceChain: typeof getTypeInheritanceChain;
+    parsingPath: typeof parsingPath;
+    generatePath: typeof generatePath;
+    ccClassAttrPropertyDefaultValue: typeof ccClassAttrPropertyDefaultValue;
+};
+export default _default;
 //# sourceMappingURL=utils.d.ts.map

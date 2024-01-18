@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export type ITextureCompressType =
     | 'jpg'
     | 'png'
@@ -22,6 +24,7 @@ export type ITextureCompressType =
     | string;
 export type ITextureCompressPlatform = 'miniGame' | 'web' | 'ios' | 'android';
 
+export type ITextureCompressFormatType = 'pvr' | 'jpg' | 'png' | 'etc' | 'astc' | 'webp';
 export interface IHandlerInfo {
     type: 'program' | 'npm' | 'function';
     info: ICommandInfo | Function;
@@ -33,6 +36,12 @@ export interface ITextureFormatConfig {
     options: IDisplayOptions;
     formats: ITextureFormatInfo[]; // 未指定 formats 则当前格式 key 作为存储的格式 value
     suffix: string;
+
+    // --------- 用于任务调度的参数配置 --------
+    // 是否支持同格式并行压缩
+    parallelism: boolean;
+    // 是否使用子进程开启
+    childProcess?: boolean;
 }
 
 export interface AllTextureCompressConfig {
@@ -96,7 +105,7 @@ export interface ITextureFormatInfo {
     value: ITextureCompressType | string;
     formatSuffix?: string;
     alpha?: boolean;
-    formatType?: string;
+    formatType?: ITextureCompressFormatType;
     handler?: IHandlerInfo;
     custom?: boolean;
     params?: string[];

@@ -52,6 +52,7 @@ export interface ISettings {
         jsbDownloaderMaxTasks?: number;
         jsbDownloaderTimeout?: number;
         projectBundles: string[];
+        downloadMaxConcurrency?: number;
     };
     plugins: {
         jsList: string[];
@@ -75,24 +76,6 @@ export interface ISettings {
     profiling?: {
         showFPS: boolean;
     };
-}
-
-// 物理配置
-export interface IVec3Like {
-    x: number;
-    y: number;
-    z: number;
-}
-
-export interface ICollisionMatrix {
-    [x: string]: number;
-}
-
-export interface IPhysicsMaterial {
-    friction: number; // 0.5
-    rollingFriction: number; // 0.1
-    spinningFriction: number; // 0.1
-    restitution: number; // 0.1
 }
 
 export interface IPackageInfo {
@@ -185,18 +168,18 @@ export interface IBundleConfig {
     uuids: UUID[]; // 该 bundle 中的所有资源的 uuid
     paths: Record<string, any[]>; // 该 bundle 中可以通过路径加载的资源，参考以前 settings 中 rawAssets 的定义
     scenes: Record<string, UUID|number>; // 该 bundle 中所有场景，场景名为 key, uuid 为 value
-    packs: Record<UUID, UUID[]>; // 该 bundle 中所有合并的 json, 参考以前 settings 中 packedAssets 的定义
-    versions: { import: Array<string|number>, native: Array<string|number> }; // 该 bundle 中所有资源的版本号，参考以前 settings 中 md5AssetsMap 的定义
+    packs: Record<UUID, Array<UUID | number>>; // 该 bundle 中所有合并的 json, 参考以前 settings 中 packedAssets 的定义
+    versions: { import: Array<UUID | number>, native: Array<UUID | number> }; // 该 bundle 中所有资源的版本号，参考以前 settings 中 md5AssetsMap 的定义
     redirect: Array<string|number>; // 该 bundle 中重定向到其他 bundle 的资源
     debug: boolean; // 是否是 debug 模式，debug 模式会对 config.json 的数据进行压缩，所以运行时得解压
     types?: string[]; // paths 中的类型数组，参考以前 settings 中 assetTypes 的定义
     encrypted?: boolean; // 原生上使用，标记该 bundle 中的脚本是否加密
     isZip?: boolean; // 是否是 zip 模式
     zipVersion?: string;
-    extensionMap: Record<string, UUID[]>;
+    extensionMap: Record<string, Array<UUID | number>>;
     /**
      * 是否有需要预加载的脚本，默认为 `true`。
      */
     hasPreloadScript: boolean;
-    dependencyRelationships: Record<string, string[]>;
+    dependencyRelationships: Record<string, Array<UUID | number>>;
 }

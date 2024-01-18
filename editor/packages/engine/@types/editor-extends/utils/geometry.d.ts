@@ -1,4 +1,3 @@
-/// <reference types="../../../../node_modules/cc/cc" />
 import { gfx } from 'cc';
 interface IWritableArrayLike<T> {
     length: number;

@@ -1,31 +1,38 @@
-/**
- * 处理CallNativeSceneMethod发过来的消息
- */
 /// <reference types="node" />
-declare global {
-    export class NativeWindow {
-        handler: number;
-        constructor(x: number, y: number, hwnd: Buffer);
-        setPos(x: number, y: number): void;
-        setSize(w: number, h: number): void;
-        updateContextID(): void;
-        renderWindow: any;
-    }
+import { IRectLike } from '../../../../../@types/private';
+declare class NativeWindow {
+    handler: number;
+    x: number;
+    y: number;
+    width: number;
+    height: number;
+    constructor(x: number, y: number, handle: Buffer);
+    setVisible(v: boolean): void;
+    setPos(x: number, y: number): void;
+    setSize(w: number, h: number): void;
+    updateContextID(): void;
+    renderWindow: any;
 }
 declare class NativeScene {
     windowMap: Map<string, NativeWindow>;
-    createWindow(width: number, height: number, name: string, editorHandle: string): Promise<{
+    intervalHandle: NodeJS.Timeout | null;
+    redrawTimes: number;
+    constructor();
+    createWindow(rect: IRectLike, name: string, editorHandle: string): {
         handler: number;
         isPreviewProcess: boolean;
-    }>;
-    resize(x: number, y: number, width: number, height: number, name: string): number | undefined;
+    };
+    close(name: string): void;
+    resize(x: number, y: number, width: number, height: number, name: string): Promise<number | undefined>;
     /**
      * change scene's cameras's target window to new window;
      * @param name target window name
      */
-    redirectTargetWindow(name: string): void;
+    redirectTargetWindow(name: string, toEmpty?: boolean): number;
     handleInput(type: string, event: any): Promise<void>;
-    redraw(): void;
+    setVisible(name: string, visible: boolean): Promise<number | undefined>;
+    redraw(): Promise<unknown>;
+    sendToBrowser(method: string, ...args: any[]): void;
 }
 declare const _default: NativeScene;
 export default _default;

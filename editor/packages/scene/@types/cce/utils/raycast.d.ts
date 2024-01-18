@@ -1,5 +1,5 @@
 import { geometry, Node, renderer, Vec3, PhysicsRayResult } from 'cc';
-declare type ray = geometry.Ray;
+type ray = geometry.Ray;
 declare const ray: typeof geometry.Ray;
 export interface IRaycastResult {
     node: Node;

@@ -324,9 +324,11 @@ declare module "cc/editor/custom-pipeline" {
     export function saveLayoutGraphData(ar: rendering.OutputArchive, g: LayoutGraphData): void;
     export function loadLayoutGraphData(ar: rendering.InputArchive, g: LayoutGraphData): void;
     export class DescriptorDB {
+        reset(): void;
         readonly blocks: Map<string, rendering.DescriptorBlock>;
     }
     export class RenderPhase {
+        reset(): void;
         readonly shaders: Set<string>;
     }
     export enum RenderPassType {
@@ -445,23 +447,27 @@ declare module "cc/editor/custom-pipeline" {
     }
     export class UniformData {
         constructor(uniformID?: number, uniformType?: gfx.Type, offset?: number);
+        reset(uniformID?: number, uniformType?: gfx.Type, offset?: number): void;
         uniformID: number;
         uniformType: gfx.Type;
         offset: number;
         size: number;
     }
     export class UniformBlockData {
+        reset(): void;
         bufferSize: number;
         readonly uniforms: UniformData[];
     }
     export class DescriptorData {
         constructor(descriptorID?: number, type?: gfx.Type, count?: number);
+        reset(descriptorID?: number, type?: gfx.Type, count?: number): void;
         descriptorID: number;
         type: gfx.Type;
         count: number;
     }
     export class DescriptorBlockData {
         constructor(type?: rendering.DescriptorTypeOrder, visibility?: gfx.ShaderStageFlagBit, capacity?: number);
+        reset(type?: rendering.DescriptorTypeOrder, visibility?: gfx.ShaderStageFlagBit, capacity?: number): void;
         type: rendering.DescriptorTypeOrder;
         visibility: gfx.ShaderStageFlagBit;
         offset: number;
@@ -470,6 +476,7 @@ declare module "cc/editor/custom-pipeline" {
     }
     export class DescriptorSetLayoutData {
         constructor(slot?: number, capacity?: number, descriptorBlocks?: DescriptorBlockData[], uniformBlocks?: Map<number, gfx.UniformBlock>, bindingMap?: Map<number, number>);
+        reset(slot?: number, capacity?: number): void;
         slot: number;
         capacity: number;
         uniformBlockCapacity: number;
@@ -480,35 +487,44 @@ declare module "cc/editor/custom-pipeline" {
     }
     export class DescriptorSetData {
         constructor(descriptorSetLayoutData?: DescriptorSetLayoutData, descriptorSetLayout?: gfx.DescriptorSetLayout | null, descriptorSet?: gfx.DescriptorSet | null);
+        reset(descriptorSetLayout?: gfx.DescriptorSetLayout | null, descriptorSet?: gfx.DescriptorSet | null): void;
         readonly descriptorSetLayoutData: DescriptorSetLayoutData;
         readonly descriptorSetLayoutInfo: gfx.DescriptorSetLayoutInfo;
         descriptorSetLayout: gfx.DescriptorSetLayout | null;
         descriptorSet: gfx.DescriptorSet | null;
     }
     export class PipelineLayoutData {
+        reset(): void;
         readonly descriptorSets: Map<rendering.UpdateFrequency, DescriptorSetData>;
     }
     export class ShaderBindingData {
+        reset(): void;
         readonly descriptorBindings: Map<number, number>;
     }
     export class ShaderLayoutData {
+        reset(): void;
         readonly layoutData: Map<rendering.UpdateFrequency, DescriptorSetLayoutData>;
         readonly bindingData: Map<rendering.UpdateFrequency, ShaderBindingData>;
     }
     export class TechniqueData {
+        reset(): void;
         readonly passes: ShaderLayoutData[];
     }
     export class EffectData {
+        reset(): void;
         readonly techniques: Map<string, TechniqueData>;
     }
     export class ShaderProgramData {
+        reset(): void;
         readonly layout: PipelineLayoutData;
         pipelineLayout: gfx.PipelineLayout | null;
     }
     export class RenderStageData {
+        reset(): void;
         readonly descriptorVisibility: Map<number, gfx.ShaderStageFlagBit>;
     }
     export class RenderPhaseData {
+        reset(): void;
         rootSignature: string;
         readonly shaderPrograms: ShaderProgramData[];
         readonly shaderIndex: Map<string, number>;
@@ -642,11 +658,56 @@ declare module "cc/editor/custom-pipeline" {
         readonly effects: Map<string, EffectData>;
         constantMacros: string;
     }
+    export class LayoutGraphObjectPoolSettings {
+        constructor(batchSize: number);
+        descriptorDBBatchSize: number;
+        renderPhaseBatchSize: number;
+        layoutGraphBatchSize: number;
+        uniformDataBatchSize: number;
+        uniformBlockDataBatchSize: number;
+        descriptorDataBatchSize: number;
+        descriptorBlockDataBatchSize: number;
+        descriptorSetLayoutDataBatchSize: number;
+        descriptorSetDataBatchSize: number;
+        pipelineLayoutDataBatchSize: number;
+        shaderBindingDataBatchSize: number;
+        shaderLayoutDataBatchSize: number;
+        techniqueDataBatchSize: number;
+        effectDataBatchSize: number;
+        shaderProgramDataBatchSize: number;
+        renderStageDataBatchSize: number;
+        renderPhaseDataBatchSize: number;
+        layoutGraphDataBatchSize: number;
+    }
+    export class LayoutGraphObjectPool {
+        constructor(settings: LayoutGraphObjectPoolSettings, renderCommon: rendering.RenderCommonObjectPool);
+        reset(): void;
+        createDescriptorDB(): DescriptorDB;
+        createRenderPhase(): RenderPhase;
+        createLayoutGraph(): LayoutGraph;
+        createUniformData(uniformID?: number, uniformType?: gfx.Type, offset?: number): UniformData;
+        createUniformBlockData(): UniformBlockData;
+        createDescriptorData(descriptorID?: number, type?: gfx.Type, count?: number): DescriptorData;
+        createDescriptorBlockData(type?: rendering.DescriptorTypeOrder, visibility?: gfx.ShaderStageFlagBit, capacity?: number): DescriptorBlockData;
+        createDescriptorSetLayoutData(slot?: number, capacity?: number): DescriptorSetLayoutData;
+        createDescriptorSetData(descriptorSetLayout?: gfx.DescriptorSetLayout | null, descriptorSet?: gfx.DescriptorSet | null): DescriptorSetData;
+        createPipelineLayoutData(): PipelineLayoutData;
+        createShaderBindingData(): ShaderBindingData;
+        createShaderLayoutData(): ShaderLayoutData;
+        createTechniqueData(): TechniqueData;
+        createEffectData(): EffectData;
+        createShaderProgramData(): ShaderProgramData;
+        createRenderStageData(): RenderStageData;
+        createRenderPhaseData(): RenderPhaseData;
+        createLayoutGraphData(): LayoutGraphData;
+        readonly renderCommon: rendering.RenderCommonObjectPool;
+    }
     export function getGfxDescriptorType(type: rendering.DescriptorTypeOrder): gfx.DescriptorType;
     export function getDescriptorTypeOrder(type: gfx.DescriptorType): rendering.DescriptorTypeOrder;
     export function getCustomPassID(lg: LayoutGraphData, name: string | undefined): number;
     export function getCustomSubpassID(lg: LayoutGraphData, passID: number, name: string): number;
     export function getCustomPhaseID(lg: LayoutGraphData, subpassOrPassID: number, name: string | number | undefined): number;
+    export function getUniformBlockSize(blockMembers: Array<gfx.Uniform>): number;
     export function getOrCreateDescriptorID(lg: LayoutGraphData, name: string): number;
     export function getOrCreateConstantID(lg: LayoutGraphData, name: string): number;
     export function buildLayoutGraphData(lg: LayoutGraph, lgData: LayoutGraphData): void;
@@ -654,6 +715,8 @@ declare module "cc/editor/custom-pipeline" {
     export function printLayoutGraphData(g: LayoutGraphData): string;
     export function makeDescriptorSetLayoutData(lg: LayoutGraphData, rate: rendering.UpdateFrequency, set: number, descriptors: EffectAsset.IDescriptorInfo): DescriptorSetLayoutData;
     export function initializeDescriptorSetLayoutInfo(layoutData: DescriptorSetLayoutData, info: gfx.DescriptorSetLayoutInfo): void;
+    export function populatePipelineLayoutInfo(layout: PipelineLayoutData, rate: rendering.UpdateFrequency, info: gfx.PipelineLayoutInfo): void;
+    export function generateConstantMacros(device: gfx.Device, constantMacros: string): void;
     export function initializeLayoutGraphData(device: gfx.Device, lg: LayoutGraphData): void;
     export function terminateLayoutGraphData(lg: LayoutGraphData): void;
     export function getEmptyDescriptorSetLayout(): gfx.DescriptorSetLayout;
@@ -696,6 +759,8 @@ declare module "cc/editor/custom-pipeline" {
         getPhase(phaseName: string): VisibilityDB;
         phases: Map<string, VisibilityDB>;
     }
+    export const DEFAULT_UNIFORM_COUNTS: Map<string, number>;
+    export const DYNAMIC_UNIFORM_BLOCK: Set<string>;
     export class VisibilityGraph {
         getPass(passName: string): VisibilityPass;
         mergeEffect(asset: EffectAsset): void;
@@ -783,6 +848,8 @@ declare module "cc/editor/custom-pipeline" {
     export import UploadPair = rendering.UploadPair;
     export import MovePair = rendering.MovePair;
     export import PipelineStatistics = rendering.PipelineStatistics;
+    export import RenderCommonObjectPoolSettings = rendering.RenderCommonObjectPoolSettings;
+    export import RenderCommonObjectPool = rendering.RenderCommonObjectPool;
     export import OutputArchive = rendering.OutputArchive;
     export import InputArchive = rendering.InputArchive;
     import { rendering, gfx, EffectAsset } from "cc";

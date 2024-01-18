@@ -1,4 +1,3 @@
-/// <reference types="../../../../node_modules/cc/cc" />
 /// <reference types="node" />
 import type { Node } from 'cc';
 import { EventEmitter } from 'events';
