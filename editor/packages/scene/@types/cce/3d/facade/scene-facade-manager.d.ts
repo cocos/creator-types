@@ -6,6 +6,7 @@ import { Node, Component } from 'cc';
 import * as cc from 'cc';
 import type { SceneUndoCommandID } from '../../export/undo';
 import { IAssetInfo } from '@cocos/creator-types/editor/packages/asset-db/@types/public';
+import { ISceneDisplayInfo } from '../manager/multi-scene/interfaces';
 declare class SceneFacadeManager implements ISceneFacade {
     private _projectType;
     private _highQuality;
@@ -278,5 +279,21 @@ declare class SceneFacadeManager implements ISceneFacade {
     toggleLightProbeBoundingBoxEditMode(mode: boolean): boolean;
     queryLightProbeBoundingBoxEditMode(): boolean;
     queryAuxiliaryCurves(clipUUID: string): Promise<Record<string, import("../../../../@types/public").IPropCurveDumpData>>;
+    /*********************** 多场景相关接口 ************************/
+    changeScene(): Promise<void>;
+    multiOpenScene(uuid: string): Promise<void>;
+    multiCloseScene(uuid: string): Promise<void>;
+    multiSceneDirty(uuid: string): Promise<boolean>;
+    multiSceneFocus(uuid: string): Promise<void>;
+    multiSceneQuery(): Promise<ISceneDisplayInfo[]>;
+    multiSceneFocusQuery(): Promise<string>;
+    multiSaveAllScene(): Promise<void>;
+    loadEmptyScene(): Promise<boolean>;
+    multiQueryIsMultiEditMode(): Promise<boolean>;
+    multiCloseTabsToTheRight(uuid: string): Promise<boolean>;
+    multiCloseOthers(uuid: string): Promise<boolean>;
+    multiMoveSceneTo(uuid: string, beforeUuid: string): Promise<void>;
+    beforePreview(): Promise<void>;
+    afterPreview(): Promise<void>;
 }
 export { SceneFacadeManager };

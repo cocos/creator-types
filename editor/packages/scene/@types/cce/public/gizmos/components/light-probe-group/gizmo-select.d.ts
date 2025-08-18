@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { LightProbeGroup, Node } from 'cc';
 import GizmoOperationEventListener from '../../utils/gizmo-operation-event-listener';
 import { IChangeNodeOptions, ISceneKeyboardEvent, ISceneMouseEvent } from '../../../../../../@types/private';

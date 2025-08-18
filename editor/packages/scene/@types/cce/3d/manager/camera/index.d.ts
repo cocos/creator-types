@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { EventEmitter } from 'events';
 import { CameraMoveMode } from './utils';
 import { Color, Quat, Vec3, renderer, ISizeLike } from 'cc';
@@ -127,6 +126,7 @@ export declare class Camera extends EventEmitter implements ISceneEvents {
     getCamera(): renderer.scene.Camera;
     onControl3DModeChanged(mode: CameraMoveMode): void;
     setRulerVisible(visible: boolean): void;
+    onSceneChange(uuid: string): void;
 }
 declare const _default: Camera;
 export default _default;

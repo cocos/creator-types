@@ -4,7 +4,7 @@ import { IAnimData, ICurveInfo, IPropCustomData, IPropData, IPropDumpData, IKeyf
 import { EmbeddedPlayable } from 'cc/editor/embedded-player';
 declare const allowModifyCurveType: string[];
 export declare function isSkeletonClip(uuid: string): boolean;
-declare function isHierarchyPath(path: any): boolean;
+declare function isHierarchyPath(path: any): path is animation.HierarchyPath;
 export declare function getSerializedAuxCurves(clip: AnimationClip): Record<string, any>;
 /**
  * 对 AnimationClips 对象数组去重（根据 `clip.uuid`）

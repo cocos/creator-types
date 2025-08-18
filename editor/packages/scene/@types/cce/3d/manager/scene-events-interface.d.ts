@@ -17,5 +17,6 @@ interface ISceneEvents {
     onComponentRemoved?(comp: Component, opts?: IOptionBase): void;
     onAssetDeleted?(uuid: string, info?: any): void;
     onAssetChanged?(uuid: string, info?: any, meta?: any): void;
+    onSceneChange?(uuid: string): void;
 }
 export { ISceneEvents };

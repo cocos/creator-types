@@ -8,9 +8,9 @@ declare const PropertyOverrideInfo: typeof Prefab._utils.PropertyOverrideInfo;
 type TargetOverrideInfo = Prefab._utils.TargetOverrideInfo;
 declare const TargetOverrideInfo: typeof Prefab._utils.TargetOverrideInfo;
 declare enum PrefabState {
-    NotAPrefab = 0,
-    PrefabChild = 1,
-    PrefabInstance = 2,
+    NotAPrefab = 0,// 普通节点，非Prefab
+    PrefabChild = 1,// Prefab子节点，不含有PrefabInstance
+    PrefabInstance = 2,// Prefab的根节点含有PrefabInstance的节点
     PrefabLostAsset = 3
 }
 declare class PrefabUtil {

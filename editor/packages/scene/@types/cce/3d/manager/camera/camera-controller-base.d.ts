@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { Node, Camera, Vec3, MeshRenderer, ISizeLike, Color } from 'cc';
 import { EventEmitter } from 'events';
 import { CameraMoveMode } from './utils';

@@ -16,11 +16,12 @@ import {
     IComponent
 } from './public';
 
-import { Node, Vec3, Quat,Component } from 'cc';
+import { Node, Vec3, Quat, Component } from 'cc';
 import type ParticleManager from '../source/script/3d/manager/particle';
 import type { ISceneEvents } from '../source/script/3d/manager/scene-events-interface';
 import { AnimationOperationOptions, AssetInfo, EditorCameraInfo, IPropCurveDumpData } from './private';
 import { IAssetInfo, IAssetMeta } from '@cocos/creator-types/editor/packages/asset-db/@types/public';
+import { ISceneDisplayInfo } from '../source/script/3d/manager/multi-scene/interfaces';
 
 interface ISceneFacade extends ISceneEvents {
     init(): void;
@@ -111,13 +112,13 @@ interface ISceneFacade extends ISceneEvents {
      * 查询当前模式中的回收节点
      * @param uuid
      */
-    queryRecycleNode(uuid:string):Node|null;
+    queryRecycleNode(uuid: string): Node | null;
 
     /**
      * 查询当前模式中的回收组件
      * @param uuid
      */
-    queryRecycleComponent(uuid:string):Component|null;
+    queryRecycleComponent(uuid: string): Component | null;
     //////////
     // node //
     //////////
@@ -303,18 +304,18 @@ interface ISceneFacade extends ISceneEvents {
     /**
      * 保存一次操作记录
      */
-    public async snapshot(command?: any): Promise<void>;
+    snapshot(command?: any): Promise<void>;
 
     /**
      * 放弃当前步骤的所有变动记录
      */
-    public abortSnapshot(): void;
+    abortSnapshot(): void;
 
-    public beginRecording(uuids: string | string[], options?: ISceneUndoOptions): SceneUndoCommandID;
+    beginRecording(uuids: string | string[], options?: ISceneUndoOptions): SceneUndoCommandID;
 
-    public cancelRecording(commandId: SceneUndoCommandID): boolean;
+    cancelRecording(commandId: SceneUndoCommandID): boolean;
 
-    public endRecording(commandId: SceneUndoCommandID): boolean;
+    endRecording(commandId: SceneUndoCommandID): boolean;
 
     /**
      * 撤销一次操作记录
@@ -568,7 +569,7 @@ interface ISceneFacade extends ISceneEvents {
      * 聚焦于某个节点
      * @param uuid 节点uuid
      */
-    focus(uuid: string[] | null, editorCameraInfo?:EditorCameraInfo, immediate?:boolean):void;
+    focus(uuid: string[] | null, editorCameraInfo?: EditorCameraInfo, immediate?: boolean): void;
     /**
      * 将编辑相机数据拷贝到节点上
      * @param uuids 节点数组
@@ -871,7 +872,36 @@ interface ISceneFacade extends ISceneEvents {
 
     removeCurrentSelectedProbes(): void;
 
-    changeTitle():Promise<void>;
+    changeTitle(): Promise<void>;
+
+    /*********************** 多场景相关接口 ************************/
+    /**
+     * 切换 场景、prefab 时候被调用
+     */
+    changeScene(): Promise<void>;
+
+    multiOpenScene(uuid: string): Promise<void>;
+    multiCloseScene(uuid: string): Promise<void>;
+    multiSceneDirty(uuid: string): Promise<boolean>;
+    multiSceneFocus(uuid: string): Promise<void>;
+    multiSceneQuery():Promise<ISceneDisplayInfo[]>;
+    multiSceneFocusQuery(): Promise<string>;
+    multiSaveAllScene():Promise<void>;
+    multiQueryIsMultiEditMode(): Promise<boolean>;
+    /**
+     * 加载空场景
+     */
+    loadEmptyScene():Promise<boolean>;
+
+    multiCloseTabsToTheRight(uuid: string): Promise<boolean>;
+    multiCloseOthers(uuid: string): Promise<boolean>;
+    multiMoveSceneTo(uuid: string, beforeUuid: string): Promise<void>;
+
+    /**
+     * 切换到预览模式(这边主要是在从场景模式切换到预览模式之前（后）调用，然后 scene 进程可以提前处理一些信息)
+     */
+    beforePreview?(): Promise<void>;
+    afterPreview?(): Promise<void>;
 }
 
 export default ISceneFacade;

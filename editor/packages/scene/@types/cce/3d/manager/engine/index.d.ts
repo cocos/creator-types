@@ -4,7 +4,7 @@ import { IChangeNodeOptions } from '../../../../../@types/private';
 import { GeometryRenderer } from './geometry_renderer';
 import { EventEmitter } from '../../../utils/event-emitter';
 declare enum NeedAnimState {
-    CAMERA_ORBIT = 0,
+    CAMERA_ORBIT = 0,// 0
     CAMERA_PAN = 1,
     CAMERA_WANDER = 2,
     ANIMATION_MODE = 3,

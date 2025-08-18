@@ -63,6 +63,7 @@ declare class CameraController3D extends CameraControllerBase {
     set wanderSpeed(value: number);
     get enableAcceleration(): boolean;
     set enableAcceleration(value: boolean);
+    showGrid(visible: boolean): void;
     init(camera: Camera): void;
     private initOriginAxis;
     private updateOriginAxisByConfig;

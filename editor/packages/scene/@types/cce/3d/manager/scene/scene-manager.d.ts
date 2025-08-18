@@ -1,7 +1,3 @@
-/// <reference path="../../../../../../../../resources/3d/engine/bin/.declarations/cc.d.ts" />
-/// <reference path="../../../public/gizmos/utils/engine/3d.d.ts" />
-/// <reference path="../../../public/gizmos/manager/data.d.ts" />
-/// <reference path="../asset/asset-watcher.d.ts" />
 import { QueryClassesOptions } from '../../../../../@types/public';
 import EventEmitter from '../../../public/EventEmitter';
 import { Node, Scene } from 'cc';
@@ -15,6 +11,7 @@ export interface ISceneManagerEventMap {
     'animation-start': (uuid: string) => void;
     'animation-end': () => void;
     'mode-change': (mode: SceneModeType) => void;
+    change: (beforeScene: Scene, afterScene: Scene) => void;
 }
 /**
  * 场景管理器
@@ -82,6 +79,12 @@ declare class SceneManager extends EventEmitter {
      * @param scene 关闭的场景
      */
     sendSceneCloseMsg(scene: Scene): void;
+    /**
+     * 发送场景切换事件
+     * @param beforeScene
+     * @param afterScene
+     */
+    sceneSceneChanged(beforeScene: Scene, afterScene: Scene): void;
     on<T extends keyof ISceneManagerEventMap>(event: T, listener: ISceneManagerEventMap[T]): this;
     once<T extends keyof ISceneManagerEventMap>(event: T, listener: ISceneManagerEventMap[T]): this;
     emit<T extends keyof ISceneManagerEventMap>(event: T, ...args: Parameters<ISceneManagerEventMap[T]>): boolean;

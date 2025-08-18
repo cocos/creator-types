@@ -12,7 +12,10 @@ declare class PrefabSceneProxy extends SceneProxy {
      * @returns {boolean} 是否打开成功
      */
     open(uuid: string): Promise<boolean>;
-    _loadPrefabByData(uuid: string, prefab: any): Promise<boolean>;
+    _loadPrefab(uuid: string): Promise<boolean>;
+    _loadPrefabById(uuid: string): Promise<boolean>;
+    _sceneWrapCanvasNode(scene: any): Promise<any>;
+    _checkClose(): Promise<boolean>;
     checkClose(): Promise<boolean>;
     /**
      * 关闭正在编辑的场景

@@ -32,6 +32,10 @@ export type ExtensionInfo = {
     description?: string;
     /** 插件的创建模块的相对路径，需要在该模块中暴露 ExtensionCreator 类型的对象*/
     creator?: string;
+
+    /* 是否从 npm cli 迁移过来的模板 */
+    isFromCLI?: boolean;
+    cliTemplateName?: string; 
 };
 
 export interface ICreateExtensionResponse {

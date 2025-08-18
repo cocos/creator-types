@@ -15,7 +15,6 @@ export interface IOptions {
 
     subpackages?: { name: string, root: string }[];
     wasmSubpackage: boolean;
-    localSeparateEngine?: boolean;
 }
 
 export interface ITaskOption extends IInternalBuildOptions {

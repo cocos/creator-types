@@ -5,8 +5,8 @@ interface IModelInfo {
     polygons: number;
 }
 declare enum PlayState {
-    STOP = 0,
-    PLAYING = 1,
+    STOP = 0,// 停止
+    PLAYING = 1,// 播放中
     PAUSE = 2
 }
 declare class ModelPreview extends InteractivePreview {

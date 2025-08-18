@@ -22,7 +22,7 @@ declare class MeshPreview extends InteractivePreview {
         format: {
             count: number;
         };
-        index: Uint8Array | Uint16Array | Uint32Array | null;
+        index: Uint8Array<ArrayBufferLike> | Uint16Array<ArrayBufferLike> | Uint32Array<ArrayBufferLike> | null;
     }[] | null>;
     getModelInfo(): IModelInfo;
     setLightEnable(enable: boolean): void;

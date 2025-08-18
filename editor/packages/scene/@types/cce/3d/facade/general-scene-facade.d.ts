@@ -1,7 +1,3 @@
-/// <reference path="../../../../../../../resources/3d/engine/bin/.declarations/cc.d.ts" />
-/// <reference path="../../public/gizmos/utils/engine/3d.d.ts" />
-/// <reference path="../../public/gizmos/manager/data.d.ts" />
-/// <reference path="../manager/asset/asset-watcher.d.ts" />
 import { CreateComponentOptions, CreateNodeOptions, CutNodeOptions, ExecuteComponentMethodOptions, ExecuteSceneScriptMethodOptions, IAnimOperation, MoveArrayOptions, PasteNodeOptions, QueryClassesOptions, RemoveArrayOptions, RemoveComponentOptions, RemoveNodeOptions, SetPropertyOptions, EditorCameraInfo } from '../../../../@types/public';
 import { IAniResultBase, IChangeNodeOptions, IOptionBase, ISceneUndoOptions } from '../../../../@types/private';
 import { ISceneFacadeState, SceneModeType } from './scene-facade-state-interface';
@@ -11,6 +7,7 @@ import { ISceneEvents } from '../manager/scene-events-interface';
 import { TransformToolDataCoordinateType, TransformToolDataPivotType, TransformToolDataToolNameType } from '../../public/gizmos/manager/transform-tool';
 import { IAssetInfo, IAssetMeta } from '@cocos/creator-types/editor/packages/asset-db/@types/public';
 import { SceneUndoCommandID, ISceneUndoManager } from '../../export/undo/index';
+import { ISceneDisplayInfo } from '../manager/multi-scene/interfaces';
 export declare class GeneralSceneFacade implements ISceneFacadeState {
     protected _sceneMgr: import("../manager/scene/scene-manager").default;
     protected _cameraMgr: import("../manager/camera").Camera;
@@ -138,7 +135,7 @@ export declare class GeneralSceneFacade implements ISceneFacadeState {
     endRecording(commandId: SceneUndoCommandID): boolean;
     undo(): Promise<void>;
     redo(): Promise<void>;
-    recordNode(node: Node, enable?: boolean): void;
+    recordNode(node: Node, enable?: boolean, dumpImmediately?: boolean): void;
     queryAllEffects(): Promise<any>;
     queryMaterial(uuid: string): Promise<any>;
     queryEffect(effectName: string): Promise<any>;
@@ -282,5 +279,18 @@ export declare class GeneralSceneFacade implements ISceneFacadeState {
     toggleLightProbeBoundingBoxEditMode(mode: boolean | undefined): boolean;
     queryLightProbeBoundingBoxEditMode(): boolean;
     changeTitle(): Promise<void>;
+    changeScene(): Promise<void>;
+    multiOpenScene(uuid: string): Promise<void>;
+    multiCloseScene(uuid: string): Promise<void>;
+    multiSceneDirty(uuid: string): Promise<boolean>;
+    multiSceneFocus(uuid: string): Promise<void>;
+    multiSceneQuery(): Promise<ISceneDisplayInfo[]>;
+    multiSceneFocusQuery(): Promise<string>;
+    multiSaveAllScene(): Promise<void>;
+    loadEmptyScene(): Promise<boolean>;
+    multiQueryIsMultiEditMode(): Promise<boolean>;
+    multiCloseTabsToTheRight(uuid: string): Promise<boolean>;
+    multiCloseOthers(uuid: string): Promise<boolean>;
+    multiMoveSceneTo(uuid: string, beforeUuid: string): Promise<void>;
 }
 export default GeneralSceneFacade;

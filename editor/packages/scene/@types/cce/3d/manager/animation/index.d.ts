@@ -1,12 +1,11 @@
-/// <reference types="node" />
 import { IChangeNodeOptions, IAnimOperation, EditorAnimationClipDump, IAniResultBase, IAniEditInfo, AnimationOperationOptions } from '../../../../../@types/private';
 import { AnimationClip, Node, AnimationState } from 'cc';
 import { EventEmitter } from 'events';
 import { IAnimData } from './type-defines';
 import { ISceneEvents } from '../scene-events-interface';
 declare enum PlayState {
-    STOP = 0,
-    PLAYING = 1,
+    STOP = 0,// 停止
+    PLAYING = 1,// 播放中
     PAUSE = 2
 }
 export declare class AnimationManager extends EventEmitter implements ISceneEvents {

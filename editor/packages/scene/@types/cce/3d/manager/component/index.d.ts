@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { EventEmitter } from 'events';
 import { Component } from 'cc';
 import { IProperty } from '../../../../../@types/public';

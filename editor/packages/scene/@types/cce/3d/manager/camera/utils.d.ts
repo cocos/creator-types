@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { Color, MeshRenderer, Node, Component } from 'cc';
 import EditorCameraComponent from './editor-camera-components';
 interface CreateHTMLOptions {

@@ -11,7 +11,7 @@ declare class PreviewBuffer extends EventEmitter {
     device: any;
     width: number;
     height: number;
-    data: Uint8Array;
+    data: Uint8Array<ArrayBuffer>;
     renderScene: any;
     scene: any;
     windows: any;
@@ -35,7 +35,7 @@ declare class PreviewBuffer extends EventEmitter {
     copyFrameBuffer(window?: any): any;
     static indexOfRGBA: number[];
     static indexOfBGRA: number[];
-    formatBuffer(buffer: Uint8Array, needInvert: boolean, conversionBGRA: boolean): Uint8Array;
+    formatBuffer(buffer: Uint8Array, needInvert: boolean, conversionBGRA: boolean): Uint8Array<ArrayBufferLike>;
     getImageDataInQueue(width: number, height: number, event: any): void;
     step(): Promise<void>;
     getImageData(width: number, height: number): Promise<any>;

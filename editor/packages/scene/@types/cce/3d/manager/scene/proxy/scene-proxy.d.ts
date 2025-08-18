@@ -20,6 +20,10 @@ declare class SceneProxy {
     open(uuid: string): Promise<boolean>;
     checkClose(): Promise<boolean>;
     /**
+     * 多场景切换的时候，用于暂存数据，比如prefab、scene
+     */
+    stash(): Promise<boolean>;
+    /**
      * 关闭编辑模式
      */
     close(): Promise<boolean>;
@@ -79,5 +83,6 @@ declare class SceneProxy {
     restorePrefabUUID(scene: Scene, prefabUUIDMap: UUIDMap): void;
     storeScenePrefabUUID(): void;
     restoreScenePrefabUUID(): void;
+    loadEmptyScene(): Promise<boolean>;
 }
 export default SceneProxy;

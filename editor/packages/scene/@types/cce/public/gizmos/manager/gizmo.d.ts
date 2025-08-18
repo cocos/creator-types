@@ -1,7 +1,3 @@
-/// <reference path="../../../../../../../../resources/3d/engine/bin/.declarations/cc.d.ts" />
-/// <reference path="../utils/engine/3d.d.ts" />
-/// <reference path="data.d.ts" />
-/// <reference path="../../../3d/manager/asset/asset-watcher.d.ts" />
 import { Camera, Component, gfx, IVec3Like, Node, Vec3 } from 'cc';
 import { EventEmitter } from '@itharbors/structures';
 import { IChangeNodeOptions } from '../../../../../@types/private';
@@ -188,7 +184,7 @@ export declare class GizmoManager extends SelectionGizmoManager implements IScen
             maxPos: Vec3;
             primitiveType: gfx.PrimitiveMode;
         };
-        calcCubeData(width: number, height: number, length: number, center?: IVec3Like | undefined, opts?: any): {
+        calcCubeData(width: number, height: number, length: number, center?: IVec3Like, opts?: any): {
             positions: Vec3[];
             indices: number[];
             normals: Vec3[];
@@ -274,12 +270,9 @@ export declare class GizmoManager extends SelectionGizmoManager implements IScen
             maxPos: Vec3;
             primitiveType: gfx.PrimitiveMode;
         };
-        calcPolygonData(points: Vec3[], indices?: number[] | undefined): {
+        calcPolygonData(points: Vec3[], indices?: number[]): {
             positions: Vec3[];
-            normals: any[]; /**
-             * 更新光照探针的四面体，需要通知到 MeshRenderer Gizmo
-             * @returns
-             */
+            normals: any[];
             indices: number[];
             minPos: Vec3;
             maxPos: Vec3;

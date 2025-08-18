@@ -2,7 +2,8 @@ import { IAnimOperation, CreateNodeOptions, RemoveNodeOptions, SetPropertyOption
 import GeneralSceneFacade from './general-scene-facade';
 import { AnimationUndoManager } from '../../export/undo/animation';
 import { Node, Component } from 'cc';
-import { AnimationOperationOptions, IAniResultBase, IChangeNodeOptions } from '../../../../@types/private';
+import { AnimationOperationOptions, IAniResultBase, IChangeNodeOptions, ISceneUndoOptions } from '../../../../@types/private';
+import { SceneUndoCommandID } from '../../export/undo';
 declare class AnimationSceneFacade extends GeneralSceneFacade {
     _undoMgr: AnimationUndoManager;
     init(): void;
@@ -43,5 +44,13 @@ declare class AnimationSceneFacade extends GeneralSceneFacade {
     queryCurrentSceneUuid(): string;
     previewMaterial(uuid: string, material: any): Promise<void>;
     saveScene(asNew: boolean): Promise<any>;
+    snapshot(command?: any): Promise<void>;
+    abortSnapshot(): void;
+    beginRecording(uuids: string | string[], options?: ISceneUndoOptions): SceneUndoCommandID;
+    cancelRecording(commandId: SceneUndoCommandID): boolean;
+    endRecording(commandId: SceneUndoCommandID): boolean;
+    undo(): Promise<void>;
+    redo(): Promise<void>;
+    recordNode(node: Node, enable?: boolean): void;
 }
 export default AnimationSceneFacade;

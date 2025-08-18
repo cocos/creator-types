@@ -5,6 +5,7 @@ import { IFlags } from '@cocos/creator-types/editor/packages/engine/@types'
 import { StatsQuery } from '@cocos/ccbuild';
 
 export type MakeRequired<T, K extends keyof T> = T & Required<Pick<T, K>>;
+export type ISortType = 'taskName' | 'createTime' | 'platform' | 'buildTime';
 
 export interface IPhysicsConfig {
     gravity: IVec3Like; // （0，-10， 0）
@@ -57,7 +58,7 @@ export interface IPlatformConfig {
     type: IPlatformType;
     platformType: StatsQuery.ConstantManager.PlatformType;
     name: string;
-    buildTemplateConfig?: BuildTemplateConfig;
+    createTemplateLabel: string;
 }
 
 interface IBinGroupConfig {

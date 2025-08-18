@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { EventEmitter } from 'events';
 import { DataStorage } from '../../../../public/ipc/utils';
 declare class WebviewIpc extends EventEmitter {

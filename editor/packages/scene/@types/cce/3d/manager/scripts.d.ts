@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { EventEmitter } from 'events';
 import { IAssetInfo } from '@cocos/creator-types/editor/packages/asset-db/@types/public';
 export declare class ScriptManager extends EventEmitter {

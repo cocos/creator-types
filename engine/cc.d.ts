@@ -21488,6 +21488,7 @@ declare module "cc" {
         IsAnchorLocked = 524288,
         IsSizeLocked = 1048576,
         IsPositionLocked = 2097152,
+        IsSkipTransformUpdate = 16777216,
         PersistentMask = -4192741,
         AllHideMasks = 1560
     }
@@ -36525,6 +36526,18 @@ declare module "cc" {
              * @param sceneFlags @en Rendering flags of the quad @zh Quad所需场景渲染标志位
              */
             addCameraQuad(camera: renderer.scene.Camera, material: Material, passID: number, sceneFlags?: SceneFlags): void;
+            /**
+             * @beta Feature is under development
+             */
+            addDraw3D(camera: renderer.scene.Camera, models: renderer.scene.Model[], sceneFlags?: SceneFlags): void;
+            /**
+             * @beta Feature is under development
+             */
+            addDraw2D(camera: renderer.scene.Camera): void;
+            /**
+             * @beta Feature is under development
+             */
+            addProfiler(camera: renderer.scene.Camera): void;
             /**
              * @en Clear current render target.
              * @zh 清除当前渲染目标
@@ -53288,16 +53301,16 @@ declare module "cc" {
              */
             END = 2,
             /**
-             * @en The entry will be disposed.
-             * @zh entry 将被销毁。
-             */
-            DISPOSE = 3,
-            /**
              * @en The play spine skeleton animation complete type.
              * @zh 播放骨骼动画完成。
              * @property {Number} COMPLETE
              */
-            COMPLETE = 4,
+            COMPLETE = 3,
+            /**
+             * @en The entry will be disposed.
+             * @zh entry 将被销毁。
+             */
+            DISPOSE = 4,
             /**
              * @en The spine skeleton animation event type.
              * @zh 骨骼动画事件。
@@ -53531,6 +53544,13 @@ declare module "cc" {
              */
             get customMaterial(): Material | null;
             set customMaterial(val: Material | null);
+            /**
+             * @deprecated Since v3.8.7, it will be removed in the future.
+             * We are deprecating the `customMaterialInstance` field because it leads to shared material state across all slots,
+             * causing unexpected behavior (like the last blendMode change affecting all slots).
+             * Workaround:
+             *    Switch to customMaterial. Whenever its value is modified, immediately call updateMaterial at the exact point of change.
+             */
             get customMaterialInstance(): renderer.MaterialInstance | null;
             __preload(): void;
             /**
@@ -55166,6 +55186,7 @@ declare module "cc" {
         onEnable(): void;
         onDisable(): void;
         protected _syncAnchorPoint(): void;
+        protected _resize(): void;
         /**
          * @en Gets the layer name.
          * @zh 获取层的名称。
@@ -74571,6 +74592,7 @@ declare module "cc" {
             prepareUpdate(): void;
             update(): void;
             isResuming(): boolean;
+            cancelUpdate(): void;
             getDownloadedFiles(): number;
             getDownloadedBytes(): number;
             getTotalFiles(): number;
@@ -75160,6 +75182,7 @@ declare module "cc" {
                 prepareUpdate(): void;
                 update(): void;
                 isResuming(): boolean;
+                cancelUpdate(): void;
                 getDownloadedFiles(): number;
                 getDownloadedBytes(): number;
                 getTotalFiles(): number;

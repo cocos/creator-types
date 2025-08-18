@@ -7,12 +7,13 @@ import { BaseHandler } from './base-handler';
 export declare class MaterialHandler extends BaseHandler {
     acceptedTypes: string[];
     dragNode: Node[];
+    private _highlightedNodes;
+    private _lastDragNode;
     get firstDragNode(): Node | null;
-    private getSelectedMeshRenderer;
-    private hideHighlightNode;
-    private showHighlightNode;
     private getSharedMaterialPathByNode;
     private setMaterial;
+    private showHighlightNode;
+    private restoreAllHighlights;
     onDragLeave(event: IDragEvent, dragItems: DragInfo[]): Promise<void>;
     onDragOver(event: IDragEvent, dragItems: DragInfo[]): Promise<void>;
     onDrop(event: IDragEvent, dragItems: DragInfo[]): Promise<void>;

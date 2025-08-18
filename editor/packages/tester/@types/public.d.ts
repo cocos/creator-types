@@ -15,6 +15,8 @@ export interface IAutoTestOptions {
     packages: string[];
 
     // -------- PR Test 附加传递内容 ----------
+    action: 'pull_request' | 'issue_comment' | 'workflow_dispatch',
+    targetBranch: string
     // 变动的文件路径
     changes?: string[];
 }

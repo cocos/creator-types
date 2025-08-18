@@ -4,10 +4,7 @@ import type Gizmo from './gizmo-select';
 export declare const GizmoList: Gizmo[];
 export declare const eventEmitter: EventEmitter<{
     "mode-changed": {
-        params: [
-            LightEditMode,
-            LightEditMode
-        ];
+        params: [LightEditMode, LightEditMode];
         result: void;
     };
 }>;

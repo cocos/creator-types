@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { Node, Component } from 'cc';
 import { EventEmitter } from 'events';
 import { ISceneEvents } from '../scene-events-interface';

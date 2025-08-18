@@ -16,7 +16,9 @@ declare class GeneralSceneProxy extends SceneProxy {
      * @param closePreviousScene 是否需要关闭前一个场景
      */
     _open(uuid: string, closePreviousScene?: boolean): Promise<boolean>;
+    _loadSceneByCache(uuid: string, focus?: boolean): Promise<boolean>;
     _loadScene(uuid: string, json?: any): Promise<boolean>;
+    loadEmptyScene(): Promise<boolean>;
     _loadEmptyScene(): Promise<boolean>;
     _afterLoadScene(): Promise<void>;
     checkClose(): Promise<boolean>;
@@ -28,8 +30,6 @@ declare class GeneralSceneProxy extends SceneProxy {
     close(): Promise<boolean>;
     /**
      * 刷新当前场景并且放弃所有修改
-     *
-     * @returns {boolean} 是否刷新场景
      */
     reload(): Promise<boolean>;
     /**

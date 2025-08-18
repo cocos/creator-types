@@ -1,10 +1,10 @@
-import { Node } from 'cc';
+import { Node, Scene } from 'cc';
 declare class SceneUtil {
     timer: any;
     /**
      * 通过一个 uuid 加载对应的场景
      */
-    loadSceneByUuid(uuid: string): Promise<void>;
+    loadSceneByUuid(uuid: string): Promise<Scene | null>;
     /**
      * 从一个场景节点加载场景
      */
@@ -12,7 +12,7 @@ declare class SceneUtil {
     /**
      * 从一个序列化后的 json 内加载场景
      */
-    loadSceneByJson(json: any): Promise<void>;
+    loadSceneByJson(json: any): Promise<any | null>;
     /**
      * 加载一个 prefab 成为场景
      */

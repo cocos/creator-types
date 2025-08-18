@@ -13,7 +13,7 @@ interface ISceneUndoManager extends UndoManagerBase {
     cancelRecording(id: string): boolean;
     updateDump(uuid: string[], force?: boolean): void;
     snapshot(command?: any): void;
-    record(uuid?: string): void;
+    record(uuid?: string, dumpImmediately?: boolean): void;
     abort(): void;
 }
 type IDump = INode | IScene | IComponent | null;
@@ -100,6 +100,12 @@ declare class SceneUndoManager extends UndoManagerBase implements ISceneUndoMana
      */
     snapshot(): false | undefined;
     abort(): void;
-    record(node: string): void;
+    /**
+     * 记录节点 dump 数据
+     * hack: dumpImmediately 为 true 表示 record 的时候直接记录 dump 数据到缓存中，默认为 true
+     * @param node
+     * @param dumpImmediately 默认为 true，只有自己传过来是 false 的时候才不记录（这个字段目前只有 Animation-scene-facade 新建动画剪辑时会用到）
+     */
+    record(node: string, dumpImmediately?: boolean): void;
 }
 export { SceneUndoManager, SceneUndoCommand, SceneUndoCommandID, ISceneUndoOption, ISceneUndoManager };

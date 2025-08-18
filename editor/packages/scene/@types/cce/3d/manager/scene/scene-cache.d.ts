@@ -17,7 +17,7 @@ declare class SceneCacheManager {
      * 查询指定 uuid 的上一次缓存信息
      */
     private queryLastCacheInfo;
-    private clearSceneCache;
+    clearSceneCache(uuid: string): void;
 }
 export declare const sceneCacheManager: SceneCacheManager;
 export declare function formatTime(time: string): string;

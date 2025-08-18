@@ -19,6 +19,7 @@ declare class CameraController2D extends CameraControllerBase {
     get lineColor(): Color;
     set lineColor(value: Color);
     get grid(): Grid;
+    showGrid(visible: boolean): void;
     init(camera: Camera): void;
     private _initMode;
     _initRuler(): void;
